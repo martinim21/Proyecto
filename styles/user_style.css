@@ -1,0 +1,101 @@
+
+body{
+
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+header {
+  height: inherit;
+  background: #3f3f3f;
+  color: #FFFFFF;
+  height: 5em;
+  left: 0;
+  position: center;
+  top: 0;
+  width: 100%;
+  border-radius: 15px;
+}
+
+#logo{
+  border-radius: 15px;
+  height: auto;
+  height: inherit;
+
+}
+#user_image{
+  border-radius: 10px;
+  margin: 4px;
+  width: 160px;
+  height: 160px;
+
+}
+#description_skills{
+
+    float: center;
+    margin: 5px;
+    width: 80%;
+}
+#sumary_skills{
+
+      float: left;
+      height: 100%;
+}
+#companies_table, .companias_candidatas{
+    border-collapse:separate;
+border-spacing: 0px;
+    float: left;
+    font-family:Verdana,Helvetica;
+    font-weight:bold;
+    border:0px;
+    margin-top:  4px;
+    border-radius: 5px;
+    border-style:  solid;
+    border-width: 1px;
+    width: 100%;
+}
+table, td, th{
+  border-collapse: separate;;
+  border-spacing: 3px;
+  border-top: 0px;
+  border-bottom: 0px;
+
+}
+.info_estudiante, .encabezados{
+  font-weight: bold;
+}
+#button_search{
+  float: right;
+  font-family:Verdana,Helvetica;
+  font-weight:bold;
+  color:white;
+  background:#008DD8;
+  border:0px;
+  margin: 4px;
+  border-radius: 5px;
+  height: 30px;
+}
+nav{
+  float: right;
+  margin: 0 1.5%;
+  width: 20%;
+
+}
+
+
+@media (min-width: 300px) and (max-width: 600px){
+   #skills_table, #button_search, #description_skills, nav{
+    width: 100%;
+  }
+  section, nav,  #button_search, #description_skills{
+    float: none;
+  }
+  section{
+    width: 100%;
+  }
+  #user_image{
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+}
