@@ -18,6 +18,13 @@ header {
   border-radius: 15px;
 }
 
+a{
+  text-decoration: none;
+  font-family:Verdana,Helvetica;
+  font-weight:bold;
+  color:white;
+}
+
 #logo{
   border-radius: 15px;
   height: auto;
@@ -76,11 +83,18 @@ table, td, th{
   border-radius: 5px;
   height: 30px;
 }
+
 nav{
   float: right;
   margin: 0 1.5%;
   width: 20%;
 
+}
+.companies_images{
+  width: 60%;
+  height: 40px;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 
