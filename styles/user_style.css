@@ -31,20 +31,20 @@ a{
   height: inherit;
 
 }
-#user_image{
+#user_image, #compania_image{
   border-radius: 10px;
   margin: 4px;
   width: 160px;
   height: 160px;
 
 }
-#description_skills{
+#description_skills, .presentacion_compania{
 
     float: center;
     margin: 5px;
     width: 80%;
 }
-#sumary_skills{
+#sumary_skills, .perfil_compania{
 
       float: left;
       height: 100%;
@@ -99,16 +99,16 @@ nav{
 
 
 @media (min-width: 300px) and (max-width: 600px){
-   #skills_table, #button_search, #description_skills, nav{
+   #skills_table, #button_search, #description_skills, nav, .perfil_compania, .buscar_alumnos, .presentacion_compania{
     width: 100%;
   }
-  section, nav,  #button_search, #description_skills{
+  section, nav,  #button_search, #description_skills, .buscar_alumnos, .presentacion_compania{
     float: none;
   }
   section{
     width: 100%;
   }
-  #user_image{
+  #user_image, #compania_image{
     margin-left: 25%;
     margin-right: 25%;
   }
