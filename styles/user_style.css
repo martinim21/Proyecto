@@ -15,7 +15,10 @@ header {
   position: center;
   top: 0;
   width: 100%;
-  border-radius: 15px;
+  border-radius: 10px;
+  -webkit-box-shadow: 5px 5px 5px 5px #B8B8B8;
+  box-shadow: 5px 5px 5px 5px #B8B8B8;
+  margin-bottom: 20px
 }
 
 a{
@@ -84,9 +87,9 @@ table, td, th{
   height: 30px;
 }
 
-nav{
+#companies_nav{
   float: right;
-  margin: 0 1.5%;
+  margin:companies_nav 0 1.5%;
   width: 20%;
 
 }
@@ -99,10 +102,10 @@ nav{
 
 
 @media (min-width: 300px) and (max-width: 600px){
-   #skills_table, #button_search, #description_skills, nav{
+   #skills_table, #button_search, #description_skills, #companies_nav{
     width: 100%;
   }
-  section, nav,  #button_search, #description_skills{
+  section, #companies_nav,  #button_search, #description_skills{
     float: none;
   }
   section{
