@@ -54,15 +54,17 @@ a{
 }
 #companies_table, .companias_candidatas{
     border-collapse:separate;
-border-spacing: 0px;
+    border-spacing: 0px;
     float: left;
     font-family:Verdana,Helvetica;
     font-weight:bold;
     border:0px;
     margin-top:  4px;
-    border-radius: 5px;
     border-style:  solid;
     border-width: 1px;
+    border-top:  1px;
+    border-left:  1px;
+    border-right:   1px;
     width: 100%;
 }
 table, td, th{
@@ -100,7 +102,36 @@ table, td, th{
   margin-right: 20%;
 }
 
+input{
+  font-size:14px;
+  border-radius:7px;
+  vertical-align: bottom;
+}
 
+#skill_name{
+  width: 80px;
+}
+
+#addImage{
+  vertical-align: bottom;
+}
+#edit_icon{
+  float: right;
+  width: 25px;
+  height: 25px;
+}
+#user_name, #especialidad{
+  width: 40%;
+}
+#text_presentacion, #text_projects{
+  vertical-align: left;
+  width: 70%;
+  height: 100px;
+}
+.image-upload > input
+{
+    display: none;
+}
 @media (min-width: 300px) and (max-width: 600px){
    #skills_table, #button_search, #description_skills, #companies_nav{
     width: 100%;

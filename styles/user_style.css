@@ -42,19 +42,16 @@ a{
 
 }
 #description_skills, .presentacion_compania{
-
-    float: center;
     margin: 5px;
     width: 80%;
 }
 #sumary_skills, .perfil_compania{
 
       float: left;
-      height: 100%;
 }
 #companies_table, .companias_candidatas{
     border-collapse:separate;
-border-spacing: 0px;
+    border-spacing: 0px;
     float: left;
     font-family:Verdana,Helvetica;
     font-weight:bold;
@@ -100,6 +97,17 @@ table, td, th{
   margin-right: 20%;
 }
 
+
+
+td{
+  border-color:#000000;
+  border-style:solid;
+  padding:2px;
+  font-size:14px;
+  border-width:1px;
+  border-radius:7px;
+  background-color: #000000;
+}
 
 @media (min-width: 300px) and (max-width: 600px){
    #skills_table, #button_search, #description_skills, #companies_nav{

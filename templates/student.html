@@ -3,60 +3,66 @@
   <head>
     <meta charset="utf-8">
     <title>Choose!</title>
-    <link rel="stylesheet" type="text/css"  href="../styles/user_style.css">
-
-  </link>
+    <script   src="http://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../scripts/script.js"></script>
+    <link rel="stylesheet" type="text/css"  href="../css/user_style.css"></link>
   </head>
   <body>
     <header >
-      <img id="logo" src="../images/logo.jpg" alt="logotipo principal Choose"></img>
+      <img id="logo" src="../img/logo.jpg" alt="logotipo principal Choose"></img>
 		</header>
     <nav id="companies_nav">
 
-      <table id="companies_table">
-        <thead>
-          <tr class="companias_candidatas">
-            <th>
+      <div id="companies_table">
+        <div>
+          <div class="companias_candidatas">
+            <div>
                 <button id="button_search" type="button" name="button"><a href="search_company.html">buscar empresas</a></button>
-            </th>
-          </tr>
-          <tr  class="companias_candidatas">
-            <th>
+            </div>
+          </div>
+          <div  class="companias_candidatas">
+            <div>
               empresas candidatas
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="companias_candidatas">
-            <td>
-              <img class="companies_images" src="../images/cucei.jpg" alt="imagen logotipo de compañia" />
-            </td>
-          </tr>
-          <tr class="companias_candidatas">
-            <td>
-              <img class="companies_images" src="../images/intel.png" alt="imagen logotipo de compañia" />
-            </td>
-          </tr>
-          <tr class="companias_candidatas">
-            <td>
-              <img class="companies_images" src="../images/oracle.png" alt="imagen logotipo de compañia" />
-            </td>
-          </tr>
-          <tr class="companias_candidatas">
-            <td>
-              <img class="companies_images" src="../images/tata.png" alt="imagen logotipo de compañia" />
-            </td>
-                </tr>
-                  <tr class="companias_candidatas">
-                    <td>
-                      <img class="companies_images" src="../images/ooyala.png" alt="imagen logotipo de compañia" />
-                    </td>
-                  </tr>
-        </tbody>
-      </table>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="companias_candidatas">
+            <div>
+              <img class="companies_images" src="../img/cucei.jpg" alt="imagen logotipo de compañia" />
+            </div>
+          </div>
+          <div class="companias_candidatas">
+            <div>
+              <img class="companies_images" src="../img/intel.png" alt="imagen logotipo de compañia" />
+            </div>
+          </div>
+          <div class="companias_candidatas">
+            <div>
+              <img class="companies_images" src="../img/oracle.png" alt="imagen logotipo de compañia" />
+            </div>
+          </div>
+          <div class="companias_candidatas">
+            <div>
+              <img class="companies_images" src="../img/tata.png" alt="imagen logotipo de compañia" />
+            </div>
+          </div>
+                  <div class="companias_candidatas">
+                    <div>
+                      <img class="companies_images" src="../img/ooyala.png" alt="imagen logotipo de compañia" />
+                    </div>
+                  </div>
+        </div>
+      </div>
     </nav>
     <section id="sumary_skills">
-      <img id="user_image" src="../images/user.png" alt="fotografia de alumno" />
+      <div class="image-upload">
+        <label for="file-input">
+          <img id="user_image" src="../img/user.png" alt="fotografia de alumno"/>
+        </label>
+
+        <input id="file-input" type="file"/>
+      </div>
       <table id="skills_table">
         <thead>
           <tr>
@@ -71,41 +77,11 @@
         <tbody>
           <tr>
             <td>
-             javascript
+            <input id="skill_name" class="form-field" type="text" />
             </td>
-            <td>
-              <img id="start_image" src="../images/estrella_azul_18_18.jpg" alt="imagen de estrella skills" />
-              <img id="start_image" src="../images/estrella_azul_18_18.jpg" alt="imagen de estrella skills" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              python
-            </td>
-            <td>
-              <img id="start_image" src="../images/estrella_azul_18_18.jpg" alt="imagen de estrella skills" />
-              <img id="start_image" src="../images/estrella_azul_18_18.jpg" alt="imagen de estrella skills" />
-              <img id="start_image" src="../images/estrella_azul_18_18.jpg" alt="imagen de estrella skills" />
-              <img id="start_image" src="../images/estrella_azul_18_18.jpg" alt="imagen de estrella skills" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              Linux
-            </td>
-            <td>
-              <img id="start_image" src="../images/estrella_azul_18_18.jpg" alt="imagen de estrella skills" />
-              <img id="start_image" src="../images/estrella_azul_18_18.jpg" alt="imagen de estrella skills" />
-              <img id="start_image" src="../images/estrella_azul_18_18.jpg" alt="imagen de estrella skills" />
-              <img id="start_image" src="../images/estrella_azul_18_18.jpg" alt="imagen de estrella skills" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              agregar
-            </td>
-            <td>
-              <input type="image" src="../images/add_skill_25_25.jpg">
+            <td valign="top">
+              <input id="button_skill_qty" type="number" min="1" max="5" placeholder="nivel"/>
+              <input id="addImage" type="image" src="../img/add_skill_25_25.jpg">
             </td>
           </tr>
         </tbody>
@@ -113,30 +89,25 @@
     </section>
     <section id="description_skills">
       <div class="info_estudiante">
-        Nombre del estudiante
+        Nombre del estudiante: <input id="user_name" type="text"  placeholder="ingresa tu nombre" disabled/><input id="edit_icon" type="image" name="name" src="../img/edit_icon.jpg">
+      </div>
+      <div class="info_estudiante">
+        Especialidad: <input id="especialidad" type="text"  placeholder="ingresa tu especialidad" disabled/>
       </div>
       <br>
       <div class="encabezados">
         Presentacion
       </div>
-      <p>
+      <textarea id="text_presentacion" disabled>
         Presentacion general del estudiante, describir actividades escolares que las empresas pudieran considerar como soluciones para sus necesidades.
-      </p>
+      </textarea>
       <div class="encabezados">
-        proyectos en los que ha participado
+        Experiancia profesional y proyectos en los que ha participado
       </div>
-      <p>
+      <textarea id="text_projects" disabled>
         Describir cada proyecto en los que participo que mejoraron sus habilidades tecnicas ejemplo: creacion de un compilador para python
         en español desarrollado con el lenguaje Java.
-      </p>
-      <div class="encabezados">
-        Experiencia profesional
-      </div>
-      <p>
-        Describir la experiencia profesional obtenida en practicas, servicio social o trabajos ejemplos: servicio social dando mantenimiento
-        a equipo de computo en laboratorios de U de G CUCEI, practicas profesionales en la empresa Intel desarrollando herramientas para
-        automatizar procesos enfocados a pruebas de microprocesadores.
-      </p>
+      </textarea>
     </section>
   </body>
 </html>
