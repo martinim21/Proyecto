@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>Chosse!</title>
-    <link rel="stylesheet" type="text/css"  href="../styles/user_style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+      <link rel="stylesheet" type="text/css"  href="../styles/user_style.css">
   </head>
   <body>
     <header >
@@ -12,13 +15,24 @@
     <div>Busqueda</div>
     <br>
     <form>
-      <label for="company_name">nombre empresa</label>
-      <input type="text" id="company_name" name="company_name">
-      <label for="salario">salario</label>
-      <input type="text" id="salario" name="salario">
-      <label for="puesto">puesto</label>
-      <input type="text" id="puesto" name="puesto">
-
+      <div class="row">
+        <div class="input-field col s3">
+          <input id="company_name" type="text" class="validate">
+          <label class="active" for="company_name">Nombre de la empresa</label>
+        </div>
+        <div class="input-field col s3">
+          <input id="salario" type="text" class="validate">
+          <label class="active" for="salario">Salario</label>
+        </div>
+        <div class="input-field col s3">
+          <input id="puesto" type="text" class="validate">
+          <label class="active" for="puesto">Puesto</label>
+        </div>
+            <div class="input-field col s3">
+              <input value="Alvin" id="first_name2" type="text" class="validate">
+              <label class="active" for="first_name2">First Name</label>
+            </div>
+      </div>
     </form>
   </body>
 </html>

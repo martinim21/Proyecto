@@ -9,11 +9,18 @@ var addSkill = (skillName, qtyScore) =>{
   var skillsTable = document.getElementById('skills_table');
 
   tdNameSkillElement.innerHTML = skillName;
+  tdNameSkillElement.className="col s6";
+  if(qtyScore>5){
+    qtyScore=5;
+  }
   for(var index=0; index<qtyScore; index++){
     var imageStar = document.createElement("img");
     imageStar.src = "../img/estrella_azul_18_18.jpg";
+    imageStar.className="icon_start";
     tdScoreSkillElement.appendChild(imageStar);
   }
+  tdScoreSkillElement.className="col s6";
+  trSkillElement.className="row";
   trSkillElement.appendChild(tdNameSkillElement);
   trSkillElement.appendChild(tdScoreSkillElement);
   skillsTable.tBodies[0].appendChild(trSkillElement);

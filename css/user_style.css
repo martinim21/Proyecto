@@ -37,37 +37,27 @@ a{
 #user_image, #compania_image{
   border-radius: 10px;
   margin: 4px;
-  width: 160px;
   height: 160px;
 
 }
 #description_skills, .presentacion_compania{
 
-    float: center;
     margin: 5px;
-    width: 80%;
 }
 #sumary_skills, .perfil_compania{
 
       float: left;
       height: 100%;
 }
-#companies_table, .companias_candidatas{
-    border-collapse:separate;
-    border-spacing: 0px;
-    float: left;
-    font-family:Verdana,Helvetica;
-    font-weight:bold;
-    border:0px;
-    margin-top:  4px;
-    border-style:  solid;
-    border-width: 1px;
-    border-top:  1px;
-    border-left:  1px;
-    border-right:   1px;
-    width: 100%;
+.companias_candidatas{
+  -webkit-border-radius: 5px 5px 5px 5px;
+border-radius: 5px 5px 5px 5px;
+-webkit-box-shadow: 0 0 10px 1px #050505;
+box-shadow: 0 0 10px 1px #050505;
+
+
 }
-table, td, th{
+table{
   border-collapse: separate;;
   border-spacing: 3px;
   border-top: 0px;
@@ -78,7 +68,6 @@ table, td, th{
   font-weight: bold;
 }
 #button_search{
-  float: right;
   font-family:Verdana,Helvetica;
   font-weight:bold;
   color:white;
@@ -89,12 +78,6 @@ table, td, th{
   height: 30px;
 }
 
-#companies_nav{
-  float: right;
-  margin:companies_nav 0 1.5%;
-  width: 20%;
-
-}
 .companies_images{
   width: 60%;
   height: 40px;
@@ -108,46 +91,27 @@ input{
   vertical-align: bottom;
 }
 
-#skill_name{
-  width: 80px;
-}
 
 #addImage{
   vertical-align: bottom;
+}
+.icon_start{
+  height: 12px;
+  width: 12px;
 }
 #edit_icon{
   float: right;
   width: 25px;
   height: 25px;
 }
-#user_name, #especialidad{
-  width: 40%;
-}
 #text_presentacion, #text_projects{
   vertical-align: left;
-  width: 70%;
   height: 100px;
 }
 .image-upload > input
 {
     display: none;
 }
-@media (min-width: 300px) and (max-width: 600px){
-   #skills_table, #button_search, #description_skills, #companies_nav{
-    width: 100%;
-  }
-  section, #companies_nav,  #button_search, #description_skills{
-   #skills_table, #button_search, #description_skills, nav, .perfil_compania, .buscar_alumnos, .presentacion_compania{
-    width: 100%;
-  }
-  section, nav,  #button_search, #description_skills, .buscar_alumnos, .presentacion_compania{
-    float: none;
-  }
-  section{
-    width: 100%;
-  }
-  #user_image, #compania_image{
-    margin-left: 25%;
-    margin-right: 25%;
-  }
+#companies_nav{
+       float: right;
 }
