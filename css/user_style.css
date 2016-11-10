@@ -25,7 +25,7 @@ a{
   text-decoration: none;
   font-family:Verdana,Helvetica;
   font-weight:bold;
-  color:white;
+  color:black;
 }
 
 #logo{
@@ -115,3 +115,9 @@ input{
 #companies_nav{
        float: right;
 }
+
+#enlace_company {
+  color: black;
+  visibility: visible;
+}
+

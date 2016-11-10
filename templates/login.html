@@ -1,29 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 	<head>
 	    <meta charset="utf-8">
-	    <title>Chosse!</title>
-	    <link rel="stylesheet" type="text/css"  href="../styles/user_style.css">
+	    <title>Choose!</title>
+	    <link rel="stylesheet" type="text/css"  href="../styles/user_style.css"/>
   	</head>
-  	<body>
+  	<body id="login">
 	    <header >
-	      	<img id="logo" src="../images/logo.jpg" alt="no se pudo cargar el logo"></img>
+	      	<img id="logo" src="../images/logo.jpg" alt="Logo del proyecto"></img>
 		</header>
-	    <form>
-	    	<br>
-	      	<label for="email">Email</label>
-	      	<input type="text" id="email" name="email">
-	      	<br>
-	      	<label for="password">Password</label>
-	       	<input type="text" id="password" name="password">
-	       	<br>
-	       	<input type="submit" id="submit_login" name="submit_login" value="Enviar">
-	       	<br>
+	    <form method="POST">
+	    	<div>
+    	      	<label for="email">Email</label>
+    	      	<input type="email" id="email" name="email" required="required" placeholder="Escribe tu direccion de correo electronico">
+	      	</div>
+            <div>
+    	      	<label for="password">Password</label>
+    	       	<input type="password" id="password" name="password" required="required" placeholder="Ingresa tu contraseña">
+            </div>
+	       	<div>
+                <button type="submit" id="submit_login" name="submit_login">
+                    Enviar
+                </button>
+            </div>
 	    </form>
+        <div>
+            <p>Si no estas registrado unete ya!</p>
+            <a id="enlace_company" href="company_register.html" target="_blank">Da click aqui si eres una empresa</a>
+            <a class="enlace" href="student_register.html" target="_blank">Da click aqui si eres un alumno</a>
+        </div>
 	    <footer>
-    		<p>
     			Choose!
-    		</p>
 	    </footer>
   	</body>
 </html>
