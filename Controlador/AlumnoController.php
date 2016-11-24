@@ -12,10 +12,6 @@ class AlumnoController extends ControladorBase{
 
         $allusers=$usuario->getAll();
         print_r($allusers);
-        //$this->view("index",array(
-        //    "allusers"=>$allusers,
-        //    "Hola"    =>"Soy Víctor Robles"
-        //));
     }
 
 
