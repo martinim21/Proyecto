@@ -11,9 +11,10 @@
     $sesion = new SessionControlller();
     $sesion->login(2,3);
 */
-    require 'Controlador/AlumnoController.php';
-    $a=new AlumnoController();
-    $a->index();
+    $array = array("java");
+    require 'Controlador/EmpresaController.php';
+    $a=new EmpresaController();
+    print_r($a->getEmpresaByBusinessName("mzn")[0]['user_name']);
     //$sesion->logout();
      ?>
   </body>

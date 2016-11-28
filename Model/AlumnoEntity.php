@@ -9,6 +9,8 @@ class Alumno extends Entity{
   private $carrera;
   private $direccion;
   private $idCurriculum;
+  private $isAdmin;
+  private $lastLogin;
 
     public function __construct() {
         $table="Alumno";
@@ -29,14 +31,6 @@ class Alumno extends Entity{
 
     public function setNombre($nombre) {
         $this->nombre = $nombre;
-    }
-
-    public function getApellido() {
-        return $this->apellido;
-    }
-
-    public function setApellido($apellido) {
-        $this->apellido = $apellido;
     }
 
     public function getEmail() {
@@ -82,8 +76,24 @@ class Alumno extends Entity{
         $this->idCurriculum = $idCurriculum;
     }
 
+    public function getIsAdmin() {
+        return $this->isAdmin;
+    }
+
+    public function setIsAdmin($isAdmin) {
+        $this->isAdmin = $isAdmin;
+    }
+
+    public function getLastLogin() {
+        return $this->lastLogin;
+    }
+
+    public function setLastLogin($lastLogin) {
+        $this->lastLogin = $lastLogin;
+    }
+
     public function save(){
-        $query="INSERT INTO Alumno (id,nombre,user_name,password, email, carrera, direccion, id_curriculum)
+        $query="INSERT INTO Alumno (id,nombre,user_name,password, email, carrera, direccion, id_curriculum, is_admin, fecha_ultimo_login)
                 VALUES(rand(1, 1000),
                        '".$this->nombre."',
                        '".$this->username."',
@@ -91,7 +101,9 @@ class Alumno extends Entity{
                        '".$this->email."',
                        '".$this->carrera."',
                        '".$this->direccion."',
-                       '".$this->id_curriculum."');";
+                       '".$this->idCurriculum."',
+                       '".$this->isAdmin."',
+                       '".$this->lastLogin."');";
         $save=$this->db()->query($query);
         return $save;
     }

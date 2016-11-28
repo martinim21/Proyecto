@@ -12,19 +12,25 @@ CREATE TABLE IF NOT EXISTS Alumno
     carrera             VARCHAR(60),
     direccion           VARCHAR(70),
     id_curriculum       INT,
-    PRIMARY KEY         (id)
-
+    is_admin            tinyint(1) DEFAULT 0,
+    fecha_ultimo_login  DATE,
+    PRIMARY KEY         (id),
+    UNIQUE(user_name),
+    UNIQUE(email)
 );
 
 CREATE TABLE IF NOT EXISTS Empresa (
     id                  INT             NOT NULL,
     razon_social        VARCHAR(100)    NOT NULL,
     user_name           VARCHAR(50),
+    password            VARCHAR(50)     NOT NULL,
     email               VARCHAR(50)     NOT NULL,
-    ramo                VARCHAR(60),
+    giro                VARCHAR(60),
     direccion           VARCHAR(70),
     descripcion         VARCHAR(200),
-    PRIMARY KEY         (id)
+    PRIMARY KEY         (id),
+    UNIQUE(user_name),
+    UNIQUE(email)
 );
 
 CREATE TABLE IF NOT EXISTS Mensaje (
@@ -75,4 +81,3 @@ ALTER TABLE Mensaje ADD CONSTRAINT fk_empresa FOREIGN KEY (id_empresa) REFERENCE
 ALTER TABLE Skill ADD CONSTRAINT fk_skillalumno FOREIGN KEY (id_alumno) REFERENCES Alumno(id);
 ALTER TABLE Postulacion ADD CONSTRAINT fk_postulcionalumno FOREIGN KEY (id_alumno) REFERENCES Alumno(id);
 ALTER TABLE Postulacion ADD CONSTRAINT fk_postulacionempresa FOREIGN KEY (id_empresa) REFERENCES Empresa(id);
-#ALTER TABLE Curriculum ADD CONSTRAINT fk_curriculumalumno FOREIGN KEY (id_alumno) REFERENCES Alumno(id);

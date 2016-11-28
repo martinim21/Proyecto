@@ -5,10 +5,8 @@ class Model extends Entity{
 
     public function __construct($table) {
         $this->table=(string) $table;
-        echo "table: ".$table;
         parent::__construct($table);
     }
-
 
     public function ejecutarSql($query){
         $query=$this->db()->query($query);

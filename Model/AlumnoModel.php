@@ -8,11 +8,33 @@ class AlumnoModel extends Model{
         parent::__construct($this->table);
     }
 
-    //Metodos de consulta
-    public function getAlumnoByName($name){
+    public function findAlumnoByName($name){
         $query="SELECT * FROM Alumno WHERE nombre='".$name."'";
-        $usuario=$this->ejecutarSql($query);
-        return $usuario;
+        $alumno=$this->ejecutarSql($query);
+        return $alumno;
     }
+    public function findAlumnoById($id){
+        $query="SELECT * FROM Alumno WHERE id='".$id."'";
+        $alumno=$this->ejecutarSql($query);
+        return $alumno;
+    }
+
+    public function findAlumnosBySkills($skillList){
+      $skillArgs="";
+      foreach ($skillList as $skill) {
+        $skillArgs=$skillArgs.", '". $skill."'";
+      }
+      $skillArgs = substr($skillArgs, 1);
+      $query = "select Alumno.* from Alumno inner join Skill on Alumno.id = Skill.id_alumno where Skill.nombre in (".$skillArgs.")";
+      $alumnos=$this->ejecutarSql($query);
+      return $alumnos;
+    }
+
+    public function findAlumnosBySkillAndPercent($skill, $percent){
+      $query = "select Alumno.* from Alumno inner join Skill on Alumno.id = Skill.id_alumno where Skill.nombre like '".$skill."' and porcentaje >= ".$percent."";
+      $alumnos=$this->ejecutarSql($query);
+      return $alumnos;
+    }
+
 }
 ?>

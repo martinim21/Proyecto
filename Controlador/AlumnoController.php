@@ -18,11 +18,23 @@ class AlumnoController extends ControladorBase{
 
     public function pruebas(){
         $alumno=new AlumnoModel();
-        $usu=$alumno->getAlumnoByName("1");
+        $usu=$alumno->findAlumnoByName("1");
         echo "hola: ".$usu[0]["email"];
         $usus=$alumno->getAll();
         print_r($usus);
 
+    }
+
+    public function getAlumnsBySkills($skillList){
+      $model=new AlumnoModel();
+      $result = $model->findAlumnosBySkills($skillList);
+      return $result;
+    }
+
+    public function getAlumnsBySkillAndPercent($skill, $percent){
+      $model=new AlumnoModel();
+      $result = $model->findAlumnosBySkillAndPercent($skill, $percent);
+      return $result;
     }
 
 }
