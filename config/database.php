@@ -1,10 +1,10 @@
 <?php
 return array(
-    "driver"    =>"*",
-    "host"      =>"*",
-    "user"      =>"*",
-    "pass"      =>"*",
-    "database"  =>"*",
-    "charset"   =>"*"
+    "driver"    =>"mysql",
+    "host"      =>"localhost",
+    "user"      =>"choose",
+    "pass"      =>"choose",
+    "database"  =>"Choose",
+    "charset"   =>"utf8"
 );
 ?>

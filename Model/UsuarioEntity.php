@@ -1,6 +1,6 @@
 <?php
 require_once 'Model/entity.php';
-class Alumno extends Entity{
+class Usuario extends Entity{
   private $id;
   private $nombre;
   private $username;
@@ -9,11 +9,12 @@ class Alumno extends Entity{
   private $carrera;
   private $direccion;
   private $idCurriculum;
-  private $isAdmin;
   private $lastLogin;
+  private $giro;
+  private $tipo;
 
     public function __construct() {
-        $table="Alumno";
+        $table="Usuario";
         parent::__construct($table);
     }
 
@@ -76,14 +77,6 @@ class Alumno extends Entity{
         $this->idCurriculum = $idCurriculum;
     }
 
-    public function getIsAdmin() {
-        return $this->isAdmin;
-    }
-
-    public function setIsAdmin($isAdmin) {
-        $this->isAdmin = $isAdmin;
-    }
-
     public function getLastLogin() {
         return $this->lastLogin;
     }
@@ -92,21 +85,30 @@ class Alumno extends Entity{
         $this->lastLogin = $lastLogin;
     }
 
-    public function save(){
-        $query="INSERT INTO Alumno (id,nombre,user_name,password, email, carrera, direccion, id_curriculum, is_admin, fecha_ultimo_login)
-                VALUES(rand(1, 1000),
-                       '".$this->nombre."',
-                       '".$this->username."',
-                       '".$this->password."',
-                       '".$this->email."',
-                       '".$this->carrera."',
-                       '".$this->direccion."',
-                       '".$this->idCurriculum."',
-                       '".$this->isAdmin."',
-                       '".$this->lastLogin."');";
-        $save=$this->db()->query($query);
-        return $save;
+    public function getGiro() {
+        return $this->giro;
     }
+
+    public function setGiro($giro) {
+        $this->giro = $giro;
+    }
+
+    public function getTipo() {
+        return $this->tipo;
+    }
+
+    public function setTipo($tipo) {
+        $this->tipo = $tipo;
+    }
+
+    public function getDescripcion() {
+        return $this->descripcion;
+    }
+
+    public function setDescripcion($descripcion) {
+        $this->descripcion = $descripcion;
+    }
+
 
 }
 ?>

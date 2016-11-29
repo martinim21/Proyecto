@@ -15,7 +15,7 @@ var addSkill = (skillName, qtyScore) =>{
   }
   for(var index=0; index<qtyScore; index++){
     var imageStar = document.createElement("img");
-    imageStar.src = "../img/estrella_azul_18_18.jpg";
+    imageStar.src = "Vista/img/estrella_azul_18_18.jpg";
     imageStar.className="icon_start";
     tdScoreSkillElement.appendChild(imageStar);
   }

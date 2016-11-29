@@ -7,18 +7,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
-    <script type="text/javascript" src="../scripts/script.js"></script>
-    <link rel="stylesheet" type="text/css"  href="../css/user_style.css"></link>
+    <script type="text/javascript" src="Vista/scripts/script.js"></script>
+    <link rel="stylesheet" type="text/css"  href="Vista/css/user_style.css"></link>
   </head>
   <body >
+    <div class="">
+      {% for item in list %}
+        hello: <h3>{{item}}</h3>
+
+      {%endfor%}
+    </div>
+
+      <div class="">
+        {% for item in list2 %}
+          hello: <h3>{{item}}</h3>
+
+        {%endfor%}
+      </div>
     <header >
-      <img id="logo" src="../img/logo.jpg" alt="logotipo principal Choose"></img>
+      <img id="logo" src="Vista/img/logo.jpg" alt="logotipo principal Choose"></img>
 		</header>
     <div class="row">
     <section id="sumary_skills" class="col s2">
       <div class="image-upload row">
         <label for="file-input">
-          <img id="user_image" src="../img/user.png" alt="fotografia de alumno" class="col s12"/>
+          <img id="user_image" src="Vista/img/user.png" alt="fotografia de alumno" class="col s12"/>
         </label>
 
         <input id="file-input" type="file"/>
@@ -52,7 +65,7 @@
     <section id="description_skills" class="col s7">
       <div class="row info_estudiante">
         <div class="input-field col s9">
-        <input id="edit_icon" type="image" name="name" src="../img/edit_icon.jpg">
+        <input id="edit_icon" type="image" name="name" src="Vista/img/edit_icon.jpg">
           <input value="Martin Ibarra Manzano" id="user_name" type="text" class="validate" pattern="\w{5}" disabled>
           <label class="active" for="user_name">Nombre del estudiante</label>
         </div>
@@ -87,25 +100,25 @@
 
       <div id="companies_table" class="row">
             <div class=" row">
-                <a id="button_search" class="waves-effect waves-light btn" name="button" href="../templates/search_company.php">buscar empresas></a>
+                <a id="button_search" class="waves-effect waves-light btn" name="button" href="Vista/templates/search_company.php">buscar empresas></a>
             </div>
             <div class="companias_candidatas row">
               empresas candidatas
             </div>
           <div class="companias_candidatas row">
-              <img class="companies_images" src="../img/cucei.jpg" alt="imagen logotipo de compañia" />
+              <img class="companies_images" src="Vista/img/cucei.jpg" alt="imagen logotipo de compañia" />
           </div>
           <div class="companias_candidatas row">
-              <img class="companies_images" src="../img/intel.png" alt="imagen logotipo de compañia" />
+              <img class="companies_images" src="Vista/img/intel.png" alt="imagen logotipo de compañia" />
           </div>
           <div class="companias_candidatas row">
-              <img class="companies_images" src="../img/oracle.png" alt="imagen logotipo de compañia" />
+              <img class="companies_images" src="Vista/img/oracle.png" alt="imagen logotipo de compañia" />
           </div>
           <div class="companias_candidatas row">
-              <img class="companies_images" src="../img/tata.png" alt="imagen logotipo de compañia" />
+              <img class="companies_images" src="Vista/img/tata.png" alt="imagen logotipo de compañia" />
           </div>
           <div class="companias_candidatas row">
-            <img class="companies_images" src="../img/ooyala.png" alt="imagen logotipo de compañia" />
+            <img class="companies_images" src="Vista/img/ooyala.png" alt="imagen logotipo de compañia" />
           </div>
       </div>
     </aside>
