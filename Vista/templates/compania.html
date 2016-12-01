@@ -1,53 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8"/>
-    <title>Choose!</title>
-    <link rel="stylesheet" type="text/css" href="../styles/user_style.css">
-  </head>
+    {{header}}
+  <body>
+      {{logo}}
+    <section>
+      <div class="perfil_compania">
+        <img id="compania_image" src="../images/company.jpg" alt="Logo compañía"/>
+        <h1>
+          Nombre de la compañía
+        </h1>
+        <h2>
+          Eslogan
+        </h2>
+        <table>
+          <caption>Perfil</caption>
+          <tbody>
+            <tr>
+              <th>Domicilio</th>
+              <td>Calle Numero Colonia Ciudad Estado</td>
+            </tr>
+            <tr>
+              <th>Teléfonos</th>
+              <td>## ### ### ##</td>
+            </tr>
+            <tr>
+              <th>Correo electrónico</th>
+              <td>usuario@dominio</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-  <header>
-    <img id="logo" src="../images/logo.jpg" alt="no se pudo cargar el logo"/>
-  </header>
+      <div class="presentacion_compania">
+        <h1>¿Quiénes somos?</h1>
+        <p>
+          Presentación de la compañía con la que se da a conocer su historia,
+          objetivos, metas y la importancia que tienen en el mercado.
+        </p>
+      </div>
 
-  <section>
-    <div class="perfil_compania">
-      <img id="compania_image" src="../images/company.jpg" alt="Logo compañía"/>
-      <h1>
-        Nombre de la compañía
-      </h1>
-      <h2>
-        Eslogan
-      </h2>
-      <table>
-        <caption>Perfil</caption>
-        <tbody>
-          <tr>
-            <th>Domicilio</th>
-            <td>Calle Numero Colonia Ciudad Estado</td>
-          </tr>
-          <tr>
-            <th>Teléfonos</th>
-            <td>## ### ### ##</td>
-          </tr>
-          <tr>
-            <th>Correo electrónico</th>
-            <td>usuario@dominio</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="presentacion_compania">
-      <h1>¿Quiénes somos?</h1>
-      <p>
-        Presentación de la compañía con la que se da a conocer su historia,
-        objetivos, metas y la importancia que tienen en el mercado.
-      </p>
-    </div>
-
-    <div class="buscar_alumnos">
-      <button type="button">Buscar alumnos</button>
-    </div>
-  </section>
+      <div class="buscar_alumnos">
+        <button type="button">Buscar alumnos</button>
+      </div>
+    </section>
+  </body>
 </html>

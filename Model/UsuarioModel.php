@@ -10,13 +10,26 @@ class UsuarioModel extends Model{
 
     public function findUsuarioByName($name){
         $query="SELECT * FROM Usuario WHERE nombre='".$name."'";
-        $Usuario=$this->ejecutarSql($query);
-        return $Usuario;
+        $usuario=$this->ejecutarSql($query);
+        return $usuario;
     }
+
+    public function findUsuarioByUsername($name){
+        $query="SELECT * FROM Usuario WHERE user_name = '".$name."'";
+        $usuario=$this->ejecutarSql($query);
+        return $usuario;
+    }
+
+    public function findUsuarioByNameAndPassword($name, $password){
+        $query="SELECT * FROM Usuario WHERE user_name='".$name."' and password = '".$password."'";
+        $usuario=$this->ejecutarSql($query);
+        return $usuario;
+    }
+
     public function findUsuarioById($id){
         $query="SELECT * FROM Usuario WHERE id='".$id."'";
-        $Usuario=$this->ejecutarSql($query);
-        return $Usuario;
+        $usuario=$this->ejecutarSql($query);
+        return $usuario;
     }
 
     public function findUsuariosBySkills($skillList){
@@ -26,14 +39,14 @@ class UsuarioModel extends Model{
       }
       $skillArgs = substr($skillArgs, 1);
       $query = "select Usuario.* from Usuario inner join Skill on Usuario.id = Skill.id_Usuario where Skill.nombre in (".$skillArgs.")";
-      $Usuarios=$this->ejecutarSql($query);
-      return $Usuarios;
+      $usuarios=$this->ejecutarSql($query);
+      return $usuarios;
     }
 
     public function findUsuariosBySkillAndPercent($skill, $percent){
       $query = "select Usuario.* from Usuario inner join Skill on Usuario.id = Skill.id_Usuario where Skill.nombre like '".$skill."' and porcentaje >= ".$percent."";
-      $Usuarios=$this->ejecutarSql($query);
-      return $Usuarios;
+      $usuarios=$this->ejecutarSql($query);
+      return $usuarios;
     }
 
     public function findUsuarioByGiro($listaGiros){

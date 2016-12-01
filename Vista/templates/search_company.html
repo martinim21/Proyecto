@@ -1,21 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Chosse!</title>
-    <script   src="http://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
-
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-
-          <script type="text/javascript" src="../scripts/search_company.js"></script>
-
-      <link rel="stylesheet" type="text/css"  href="../styles/user_style.css">
-  </head>
+  {{header}}
   <body>
-    <header >
-      <img id="logo" src="../img/logo.jpg" alt="no se pudo cargar el logo"></img>
-		</header>
+    {{logo}}
     <div>Busqueda</div>
     <br>
     <form>
@@ -35,7 +22,7 @@
       </div>
     </form>
     <div class="chips"></div>
-<div class="chips chips-initial"></div>
-<div class="chips chips-placeholder"></div>
+    <div class="chips chips-initial"></div>
+    <div class="chips chips-placeholder"></div>
   </body>
 </html>

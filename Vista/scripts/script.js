@@ -51,3 +51,8 @@ function initListeners(){
     document.getElementById('user_image').src = window.URL.createObjectURL(event.target.files[0]);
   }, false);
 }
+
+function logout(){
+  $.post( "index.php", { 'logout': "true"} );
+}
+});

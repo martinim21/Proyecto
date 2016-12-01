@@ -8,12 +8,18 @@ class ProcesorViews{
     public function show($name, $vars = array()){
 
         $path = 'Vista/templates/' . $name;
+        $headerPath = 'Vista/templates/header.html';
+        $logoPath = 'Vista/templates/logo.html';
 
         if (file_exists($path) == false)
         {
             trigger_error ('Template `' . $path . '` does not exist.', E_USER_NOTICE);
             return false;
         }
+        $header = file_get_contents($headerPath);
+        $logo = file_get_contents($logoPath);
+        $vars["header"]=$header;
+        $vars["logo"]=$logo;
         $vista = file_get_contents($path);
         $vista = $this->replaceForStatement($vista, $vars);
         $vista = $this->replaceVariables($vista, $vars);

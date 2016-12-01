@@ -1,17 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Choose!</title>
-    <script   src="http://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-
-    <script type="text/javascript" src="Vista/scripts/script.js"></script>
-    <link rel="stylesheet" type="text/css"  href="Vista/css/user_style.css"></link>
-  </head>
+  {{header}}
   <body >
-    <div class="">
+    <!--<div class="">
       {% for item in list %}
         hello: <h3>{{item}}</h3>
 
@@ -23,10 +14,8 @@
           hello: <h3>{{item}}</h3>
 
         {%endfor%}
-      </div>
-    <header >
-      <img id="logo" src="Vista/img/logo.jpg" alt="logotipo principal Choose"></img>
-		</header>
+      </div>-->
+      {{logo}}
     <div class="row">
     <section id="sumary_skills" class="col s2">
       <div class="image-upload row">
@@ -65,9 +54,12 @@
     <section id="description_skills" class="col s7">
       <div class="row info_estudiante">
         <div class="input-field col s9">
-        <input id="edit_icon" type="image" name="name" src="Vista/img/edit_icon.jpg">
           <input value="Martin Ibarra Manzano" id="user_name" type="text" class="validate" pattern="\w{5}" disabled>
           <label class="active" for="user_name">Nombre del estudiante</label>
+        </div>
+        <div class="col s1 offset-s2">
+          <input id="edit_icon" type="image" name="name" src="Vista/img/edit_icon.jpg">
+          <label class="active" for="edit_icon">editar</label>
         </div>
       </div>
 
@@ -100,7 +92,7 @@
 
       <div id="companies_table" class="row">
             <div class=" row">
-                <a id="button_search" class="waves-effect waves-light btn" name="button" href="Vista/templates/search_company.php">buscar empresas></a>
+                <a id="button_search" class="waves-effect waves-light btn" name="button" href="Vista/templates/search_company.html">buscar empresas></a>
             </div>
             <div class="companias_candidatas row">
               empresas candidatas

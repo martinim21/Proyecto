@@ -8,13 +8,48 @@ class UsuarioController extends ControladorBase{
         parent::__construct();
     }
 
-    public function getAllUsuarios(){
-
-        $usuario=new UsuarioModel();
-        $procesadorPlantillas = new ProcesorViews();
-
-        $allusers=$usuario->getAll();
+    public function showView($username, $password){
+      $procesadorPlantillas = new ProcesorViews();
+      if($this->login($username, $password)){
         $procesadorPlantillas->show("student.html", array('nombre' => "manzano", 'list' => array("manzana",2,3), 'list2' => array(4,5,6)));
+      }
+      else{
+        $procesadorPlantillas->show("login.html");
+      }
+    }
+
+    public function isLogged($username){
+      if(isset($_SESSION[$username]))
+        return true;
+      return false;
+    }
+
+    public function logout(){
+      session_unset();
+      session_destroy();
+      setcookie(session_name(), '', time() - 36000);
+    }
+
+    public function login($username, $password){
+      $model=new UsuarioModel();
+
+      if(isset($_SESSION['username'] )){
+        $result = $model->findUsuarioByUsername($_SESSION['username']);
+        return $result;
+      }
+
+      $result = $model->findUsuarioByNameAndPassword($username, $password);
+
+      if(!$result){
+        return $result;
+      }
+      $_SESSION['username'] = $username;
+        return $result;
+    }
+
+    public function getAllUsuarios(){
+        $usuario=new UsuarioModel();
+        $allusers=$usuario->getAll();
         return $allusers;
     }
 
