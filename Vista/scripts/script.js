@@ -2,7 +2,6 @@ window.onload = function(){
   initListeners();
 }
 
-
 var addSkill = (skillName, qtyScore) =>{
   var trSkillElement = document.createElement("tr");
   var tdNameSkillElement = document.createElement("td");
@@ -43,6 +42,7 @@ function initListeners(){
   document.getElementById("edit_icon").addEventListener("click", () => {
       document.getElementById("text_presentacion").disabled=false;
       document.getElementById("text_projects").disabled=false;
+      document.getElementById("text_historial").disabled=false;
       document.getElementById("user_name").disabled=false;
       document.getElementById("especialidad").disabled=false;
 

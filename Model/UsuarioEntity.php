@@ -9,10 +9,10 @@ class Usuario extends Entity{
   private $carrera;
   private $direccion;
   private $descripcion;
-  private $idCurriculum;
   private $lastLogin;
   private $giro;
   private $tipo;
+  private $foto;
 
     public function __construct() {
         $table="Usuario";
@@ -77,15 +77,6 @@ class Usuario extends Entity{
         $this->direccion = $direccion;
     }
 
-
-    public function getIdCurriculum() {
-        return $this->idCurriculum;
-    }
-
-    public function setIdCurriculum($idCurriculum) {
-        $this->idCurriculum = $idCurriculum;
-    }
-
     public function getLastLogin() {
         return $this->lastLogin;
     }
@@ -118,6 +109,14 @@ class Usuario extends Entity{
         $this->descripcion = $descripcion;
     }
 
+    public function getFoto() {
+        return $this->foto;
+    }
+
+    public function setFoto($foto) {
+        $this->foto = $foto;
+    }
+
     public function initDefaultValues(){
       $this->nombre = "";
       $this->username = "";
@@ -126,10 +125,10 @@ class Usuario extends Entity{
       $this->carrera = "";
       $this->direccion = "";
       $this->descripcion = "";
-      $this->idCurriculum = "null";
       $this->lastLogin = "CURRENT_TIMESTAMP()";
       $this->giro = "";
       $this->tipo = "";
+      $this->foto = "";
 
     }
     public function imprime(){
@@ -140,10 +139,10 @@ class Usuario extends Entity{
       echo("email: " . $this->email);
       echo("carrera: " . $this->carrera);
       echo("direccion: " . $this->direccion);
-      echo("idCurriculum: " . $this->idCurriculum);
       echo("lastLogin: " . $this->lastLogin);
       echo("Giro: " . $this->giro);
       echo("tipo: " . $this->tipo);
+      echo("Foto: " . $this->foto);
     }
 
 }

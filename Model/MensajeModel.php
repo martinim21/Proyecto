@@ -1,0 +1,53 @@
+<?php
+require_once 'Model/model.php';
+require_once 'Model/MensajeEntity.php';
+class MensajeModel extends Model{
+    private $table;
+
+    public function __construct(){
+        $this->table="Mensaje";
+        parent::__construct($this->table);
+    }
+
+    public function findMensajesEnviadosByUserId($userId){
+        $query="SELECT * FROM Mensaje WHERE id_emisor='".$userId."'";
+        $results=$this->ejecutarSql($query);
+        return $this->parsearMensajes($results);
+    }
+
+    public function findMensajesRecibidosByUserId($userId){
+        $query="SELECT * FROM Mensaje WHERE id_receptor='".$userId."'";
+        $results=$this->ejecutarSql($query);
+        return $this->parsearMensajes($results);
+    }
+
+    public function parsearMensajes($results){
+      $mensajesList=[];
+      foreach($results as $result){
+          $mensaje = new Mensaje();
+          $mensaje->setId($result["id"]);
+          $mensaje->setAsunto($result["asunto"]);
+          $mensaje->setContenido($result["contenido"]);
+          $mensaje->setFechaEnviado($result["fecha_enviado"]);
+          $mensaje->setFechaVisto($result["fecha_visto"]);
+          $mensaje->setIdEmisor($result["id_emisor"]);
+          $mensaje->setIdReceptor($result["id_receptor"]);
+          array_push($mensajesList, $mensaje);
+      }
+      return $mensajesList;
+    }
+
+    public function save($mensaje){
+        $query="INSERT INTO Mensaje (asunto,contenido,fecha_enviado, fecha_visto, id_emisor, id_receptor)
+                VALUES(
+                       ".$mensaje->getAsunto().",
+                       '".$mensaje->getContenido()."',
+                       '".$mensaje->getFechaEnviado()."',
+                       '".$mensaje->getFechaVisto()."',
+                       '".$mensaje->getIdEmisor()."',
+                       '".$mensaje->getIdReceptor()."');";
+        $result = $this->ejecutarSql($query);
+        return $result;
+    }
+}
+?>

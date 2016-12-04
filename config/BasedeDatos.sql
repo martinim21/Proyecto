@@ -11,11 +11,11 @@ CREATE TABLE IF NOT EXISTS Usuario
     email               VARCHAR(50)     NOT NULL,
     carrera             VARCHAR(60),
     direccion           VARCHAR(70),
-    id_curriculum       INT,
     fecha_ultimo_login  TIMESTAMP,
     descripcion         VARCHAR(200),
     giro                VARCHAR(60),
     tipo                VARCHAR(20)     NOT NULL DEFAULT'ALUMNO',
+    foto                LONGBLOB,
     PRIMARY KEY         (id),
     UNIQUE(user_name),
     UNIQUE(email)
@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS Usuario
 
 CREATE TABLE IF NOT EXISTS Mensaje (
     id                  INT             NOT NULL AUTO_INCREMENT,
+    asunto           VARCHAR(200)    DEFAULT'',
     contenido           VARCHAR(200)    DEFAULT'',
     fecha_enviado       TIMESTAMP,
     fecha_visto         TIMESTAMP,
@@ -55,8 +56,7 @@ CREATE TABLE IF NOT EXISTS Curriculum (
     id_usuario           INT            NOT NULL,
     descripcion         VARCHAR(200),
     experiencia         VARCHAR(200),
-    historial_acaedmico VARCHAR(200),
-    foto                LONGBLOB,
+    historial_academico VARCHAR(200),
     archivo             BLOB,
     PRIMARY KEY         (id)
 );
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS Visita(
 
 
 
-ALTER TABLE Usuario ADD CONSTRAINT fk_curriculum FOREIGN KEY (id_curriculum) REFERENCES Curriculum(id);
+ALTER TABLE Curriculum ADD CONSTRAINT fk_usuario_id FOREIGN KEY (id_usuario) REFERENCES Usuario(id);
 ALTER TABLE Mensaje ADD CONSTRAINT fk_emisor FOREIGN KEY (id_emisor) REFERENCES Usuario(id);
 ALTER TABLE Mensaje ADD CONSTRAINT fk_receptor FOREIGN KEY (id_receptor) REFERENCES Usuario(id);
 ALTER TABLE Skill ADD CONSTRAINT fk_skillalumno FOREIGN KEY (id_usuario) REFERENCES Usuario(id);

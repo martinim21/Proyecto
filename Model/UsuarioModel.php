@@ -1,5 +1,6 @@
 <?php
 require_once 'Model/model.php';
+require_once 'Model/UsuarioEntity.php';
 class UsuarioModel extends Model{
     private $table;
 
@@ -10,32 +11,32 @@ class UsuarioModel extends Model{
 
     public function findUsuarioByName($name){
         $query="SELECT * FROM Usuario WHERE nombre='".$name."'";
-        $usuario=$this->ejecutarSql($query);
-        return $usuario;
+        $results=$this->ejecutarSql($query);
+        return $this->parsearUsuarios($results);
     }
 
     public function findUsuarioByUsername($name){
         $query="SELECT * FROM Usuario WHERE user_name = '".$name."'";
-        $usuario=$this->ejecutarSql($query);
-        return $usuario;
+        $result=$this->ejecutarSql($query);
+        return $this->parsearUsuario($result);
     }
 
     public function findUsuarioByMail($mail){
         $query="SELECT * FROM Usuario WHERE email = '".$mail."'";
-        $usuario=$this->ejecutarSql($query);
-        return $usuario;
+        $result=$this->ejecutarSql($query);
+        return $this->parsearUsuario($result);
     }
 
     public function findUsuarioByNameAndPassword($name, $password){
         $query="SELECT * FROM Usuario WHERE user_name='".$name."' and password = '".$password."'";
-        $usuario=$this->ejecutarSql($query);
-        return $usuario;
+        $result=$this->ejecutarSql($query);
+        return $this->parsearUsuario($result);
     }
 
     public function findUsuarioById($id){
         $query="SELECT * FROM Usuario WHERE id='".$id."'";
-        $usuario=$this->ejecutarSql($query);
-        return $usuario;
+        $result=$this->ejecutarSql($query);
+        return $this->parsearUsuario($result);
     }
 
     public function findUsuariosBySkills($skillList){
@@ -45,14 +46,14 @@ class UsuarioModel extends Model{
       }
       $skillArgs = substr($skillArgs, 1);
       $query = "select Usuario.* from Usuario inner join Skill on Usuario.id = Skill.id_Usuario where Skill.nombre in (".$skillArgs.")";
-      $usuarios=$this->ejecutarSql($query);
-      return $usuarios;
+      $results=$this->ejecutarSql($query);
+      return $this->parsearUsuarios($results);
     }
 
     public function findUsuariosBySkillAndPercent($skill, $percent){
       $query = "select Usuario.* from Usuario inner join Skill on Usuario.id = Skill.id_Usuario where Skill.nombre like '".$skill."' and porcentaje >= ".$percent."";
-      $usuarios=$this->ejecutarSql($query);
-      return $usuarios;
+      $results=$this->ejecutarSql($query);
+      return $this->parsearUsuarios($results);
     }
 
     public function findUsuarioByGiro($listaGiros){
@@ -62,18 +63,58 @@ class UsuarioModel extends Model{
       }
       $giroParams = substr($giroParams, 1);
       $query = "select * from Usuario  where giro in (".$giroParams.")";
-      $result=$this->ejecutarSql($query);
-      return $result;
+      $results=$this->ejecutarSql($query);
+      return $this->parsearUsuarios($results);
     }
 
-    public function parserValues($usuario){
-      if($usuario->getIdCurriculum()=="" || $usuario->getIdCurriculum() == "null"){
-
+    public function parsearUsuario($result){
+      if($result){
+        $usuario = new Usuario();
+        $usuario->setId($result[0]["id"]);
+        $usuario->setNombre($result[0]["nombre"]);
+        $usuario->setUsername($result[0]["user_name"]);
+        $usuario->setPassword($result[0]["password"]);
+        $usuario->setEmail($result[0]["email"]);
+        $usuario->setCarrera($result[0]["carrera"]);
+        $usuario->setDireccion($result[0]["direccion"]);
+        $usuario->setLastLogin($result[0]["fecha_ultimo_login"]);
+        $usuario->setDescripcion($result[0]["descripcion"]);
+        $usuario->setGiro($result[0]["giro"]);
+        $usuario->setTipo($result[0]["tipo"]);
+        $usuario->setFoto($result[0]["foto"]);
+        return $usuario;
+      }
+      else{
+        return false;
       }
     }
 
+    public function parsearUsuarios($results){
+
+      $usuarioList=[];
+      foreach($results as $result){
+
+        $usuario = new Usuario();
+        $usuario->setId($result["id"]);
+        $usuario->setNombre($result["nombre"]);
+        $usuario->setUsername($result["user_name"]);
+        $usuario->setPassword($result["password"]);
+        $usuario->setEmail($result["email"]);
+        $usuario->setCarrera($result["carrera"]);
+        $usuario->setDireccion($result["direccion"]);
+        $usuario->setLastLogin($result["fecha_ultimo_login"]);
+        $usuario->setDescripcion($result["descripcion"]);
+        $usuario->setGiro($result["giro"]);
+        $usuario->setTipo($result["tipo"]);
+        $usuario->setFoto($result["foto"]);
+
+        array_push($usuarioList, $usuario);
+      }
+      return $usuarioList;
+    }
+
     public function save($usuario){
-        $query="INSERT INTO Usuario (nombre,user_name,password, email, carrera, direccion, id_curriculum, fecha_ultimo_login, descripcion, giro, tipo)
+        $query="INSERT INTO Usuario (nombre,user_name,password, email, carrera, direccion, fecha_ultimo_login, descripcion, giro, tipo, foto)
                 VALUES(
                        '".$usuario->getNombre()."',
                        '".$usuario->getUsername()."',
@@ -81,11 +122,11 @@ class UsuarioModel extends Model{
                        '".$usuario->getEmail()."',
                        '".$usuario->getCarrera()."',
                        '".$usuario->getDireccion()."',
-                       ".$usuario->getIdCurriculum().",
                        ".$usuario->getLastLogin().",
                        '".$usuario->getDescripcion()."',
                        '".$usuario->getGiro()."',
-                       '".$usuario->getTipo()."');";
+                       '".$usuario->getTipo()."',
+                       '".$usuario->getFoto()."');";
         $result = $this->ejecutarSql($query);
         return $result;
     }
