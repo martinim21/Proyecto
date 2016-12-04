@@ -20,6 +20,12 @@ class UsuarioModel extends Model{
         return $usuario;
     }
 
+    public function findUsuarioByMail($mail){
+        $query="SELECT * FROM Usuario WHERE email = '".$mail."'";
+        $usuario=$this->ejecutarSql($query);
+        return $usuario;
+    }
+
     public function findUsuarioByNameAndPassword($name, $password){
         $query="SELECT * FROM Usuario WHERE user_name='".$name."' and password = '".$password."'";
         $usuario=$this->ejecutarSql($query);
@@ -60,22 +66,28 @@ class UsuarioModel extends Model{
       return $result;
     }
 
-    public function save(){
-        $query="INSERT INTO Usuario (id,nombre,user_name,password, email, carrera, direccion, id_curriculum, fecha_ultimo_login, descripcion, giro, tipo)
-                VALUES(rand(1, 1000),
-                       '".$this->nombre."',
-                       '".$this->username."',
-                       '".$this->password."',
-                       '".$this->email."',
-                       '".$this->carrera."',
-                       '".$this->direccion."',
-                       '".$this->idCurriculum."',
-                       '".$this->lastLogin."',
-                       '".$this->descripcion."',
-                       ''".$this->giro."',
-                       '".$this->tipo."'');";
-        $save=$this->db()->query($query);
-        return $save;
+    public function parserValues($usuario){
+      if($usuario->getIdCurriculum()=="" || $usuario->getIdCurriculum() == "null"){
+
+      }
+    }
+
+    public function save($usuario){
+        $query="INSERT INTO Usuario (nombre,user_name,password, email, carrera, direccion, id_curriculum, fecha_ultimo_login, descripcion, giro, tipo)
+                VALUES(
+                       '".$usuario->getNombre()."',
+                       '".$usuario->getUsername()."',
+                       '".$usuario->getPassword()."',
+                       '".$usuario->getEmail()."',
+                       '".$usuario->getCarrera()."',
+                       '".$usuario->getDireccion()."',
+                       ".$usuario->getIdCurriculum().",
+                       ".$usuario->getLastLogin().",
+                       '".$usuario->getDescripcion()."',
+                       '".$usuario->getGiro()."',
+                       '".$usuario->getTipo()."');";
+        $result = $this->ejecutarSql($query);
+        return $result;
     }
 }
 ?>

@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS Usuario
     carrera             VARCHAR(60),
     direccion           VARCHAR(70),
     id_curriculum       INT,
-    fecha_ultimo_login  DATE,
+    fecha_ultimo_login  TIMESTAMP,
     descripcion         VARCHAR(200),
     giro                VARCHAR(60),
     tipo                VARCHAR(20)     NOT NULL DEFAULT'ALUMNO',
@@ -24,8 +24,8 @@ CREATE TABLE IF NOT EXISTS Usuario
 CREATE TABLE IF NOT EXISTS Mensaje (
     id                  INT             NOT NULL AUTO_INCREMENT,
     contenido           VARCHAR(200)    DEFAULT'',
-    fecha_enviado       DATE,
-    fecha_visto         DATE,
+    fecha_enviado       TIMESTAMP,
+    fecha_visto         TIMESTAMP,
     id_emisor           INT             NOT NULL,
     id_receptor         INT             NOT NULL,
     PRIMARY KEY         (id)
@@ -44,8 +44,8 @@ CREATE TABLE IF NOT EXISTS Postulacion (
     id_usuario_alumno           INT     NOT NULL,
     id_usuario_empresa          INT     NOT NULL,
     status              VARCHAR(50)     DEFAULT'EN PROCESO',
-    fecha_inicio        DATE,
-    fecha_fin           DATE,
+    fecha_inicio        TIMESTAMP,
+    fecha_fin           TIMESTAMP,
     comentarios         VARCHAR(200),
     PRIMARY KEY         (id)
 );
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS Visita(
     id                  INT             NOT NULL AUTO_INCREMENT,
     id_usuario_visitado INT             NOT NULL,
     id_usuario_visitante INT             NOT NULL,
-    fecha_visita        DATE,
+    fecha_visita        TIMESTAMP,
     PRIMARY KEY         (id)
 );
 

@@ -2,10 +2,11 @@
 <html lang="es">
 	{{header}}
   	<body id="login">
+			{{dialog}}
 			<div id="loader-wrapper">
-      <div id="loader"></div>
-      <div class="loader-section section-left"></div>
-      <div class="loader-section section-right"></div>
+	      <div id="loader"></div>
+	      <div class="loader-section section-left"></div>
+	      <div class="loader-section section-right"></div>
   		</div>
 			<form id="login-form" class="login-form" action="index.php" method="post">
 				<div class="row">
@@ -35,9 +36,10 @@
 				</div>
 				<div class="row">
 					<div class="input-field col s12 m12 l12">
-						<p class="center login-form-text margin medium-small"><a href="index.php" onclick="document.forms[0].submit();return false;">Registrar ahora!</a></p>
+						<p class="center login-form-text margin medium-small"><a href="#" onclick=" return openRegister()">Registrar ahora!</a></p>
 					</div>
 				</div>
 
 			</form>
+		</body>
 </html>

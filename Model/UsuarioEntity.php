@@ -8,6 +8,7 @@ class Usuario extends Entity{
   private $email;
   private $carrera;
   private $direccion;
+  private $descripcion;
   private $idCurriculum;
   private $lastLogin;
   private $giro;
@@ -32,6 +33,14 @@ class Usuario extends Entity{
 
     public function setNombre($nombre) {
         $this->nombre = $nombre;
+    }
+
+    public function getUsername() {
+        return $this->username;
+    }
+
+    public function setUsername($username) {
+        $this->username = $username;
     }
 
     public function getEmail() {
@@ -61,7 +70,7 @@ class Usuario extends Entity{
 
 
     public function getDireccion() {
-        return $this->dirreccion;
+        return $this->direccion;
     }
 
     public function setDireccion($direccion) {
@@ -109,6 +118,33 @@ class Usuario extends Entity{
         $this->descripcion = $descripcion;
     }
 
+    public function initDefaultValues(){
+      $this->nombre = "";
+      $this->username = "";
+      $this->password = "";
+      $this->email = "";
+      $this->carrera = "";
+      $this->direccion = "";
+      $this->descripcion = "";
+      $this->idCurriculum = "null";
+      $this->lastLogin = "CURRENT_TIMESTAMP()";
+      $this->giro = "";
+      $this->tipo = "";
+
+    }
+    public function imprime(){
+      echo("<br>");
+      echo("nombre: " . $this->nombre);
+      echo("username: " . $this->username);
+      echo("password: " . $this->password);
+      echo("email: " . $this->email);
+      echo("carrera: " . $this->carrera);
+      echo("direccion: " . $this->direccion);
+      echo("idCurriculum: " . $this->idCurriculum);
+      echo("lastLogin: " . $this->lastLogin);
+      echo("Giro: " . $this->giro);
+      echo("tipo: " . $this->tipo);
+    }
 
 }
 ?>

@@ -8,10 +8,22 @@ class LoginController extends ControladorBase{
         parent::__construct();
     }
 
-    public function showView(){
+    public function showView($vars = array()){
       $procesadorPlantillas = new ProcesorViews();
-      $procesadorPlantillas->show("login.html");
+      if(!isset($vars["mensaje"]) || $vars["mensaje"] == ""){
+        $vars["dialog"] = "";
+      }
+      else{
+        $vars["dialog"] = $this->createDialog($vars["mensaje"]);
+      }
+      $procesadorPlantillas->show("login.html", $vars);
     }
 
+    public function createDialog($msg){
+      $dialog = "<script>$(document).ready(function() {
+        Materialize.toast('".$msg."', 4000);
+      });</script>";
+      return $dialog;
+    }
 }
 ?>

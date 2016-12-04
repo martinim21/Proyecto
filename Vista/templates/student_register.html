@@ -2,36 +2,47 @@
 <html>
 		{{header}}
 		<body>
-				{{logo}}
-	    <form method="POST">
+	    <form id="register_form" method="POST" action="index.php">
 	    	<br>
+				<div class="input-field">
 	      	<label for="student_name">Nombre</label>
-	      	<input type="text" id="student_name" name="student_name">
-	      	<br>
-	      	<label for="last_name">Apellido Paterno</label>
-	       	<input type="text" id="last_name" name="last_name">
+	      	<input type="text" id="student_name" name="student_name" class="validate" required/>
+        </div>
 	       	<br>
-	      	<label for="second_last_name">Apellido Materno</label>
-	       	<input type="text" id="second_last_name" name="second_last_name">
-	       	<br>
+				<div class="input-field">
 	      	<label for="student_email">Email</label>
-	       	<input type="email" id="student_email" name="student_email">
+	       	<input type="email" id="student_email" name="student_email" required>
+        </div>
 	       	<br>
+				<div class="input-field">
 	       	<label for="student_user">Usuario</label>
-	       	<input type="text" id="student_user" name="student_user">
+	       	<input type="text" id="student_user" name="student_user" required>
+        </div>
 	       	<br>
-	      	<label for="student_password">Password</label>
-	       	<input type="password" id="student_password" name="student_password">
+				<div class="input-field">
+	      	<label for="user_password">Password</label>
+	       	<input type="password" id="user_password" name="user_password" required>
+        </div>
 	       	<br>
-	      	<label for="v_student_password">Repite Password</label>
-	       	<input type="password" id="v_student_password" name="v_student_password">
+				<div class="input-field">
+	      	<label for="user_password2">Repite Password</label>
+	       	<input type="password" id="user_password2" name="user_password2" required>
+        </div>
 	       	<br>
-	       	<button type="submit" id="submit_student_register" name="submit_student_register">Enviar</button>
+		      	<label for="user_type">tipo de usuario</label>
+						<select name="user_type" class="browser-default">
+							<option value="alumno">ALUMNO</option>
+							<option value="empresa">EMPRESA</option>
+						</select>
+
+				<br>
+					<button class= "btn" type="submit"  >Submit</button>
+
 	       	<br>
 	    </form>
 	    <footer>
     		<p>
-    			Choose!
+					-Contactar al Administrador-
     		</p>
 	    </footer>
   	</body>

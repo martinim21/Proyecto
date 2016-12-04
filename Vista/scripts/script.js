@@ -2,6 +2,7 @@ window.onload = function(){
   initListeners();
 }
 
+
 var addSkill = (skillName, qtyScore) =>{
   var trSkillElement = document.createElement("tr");
   var tdNameSkillElement = document.createElement("td");
@@ -52,7 +53,41 @@ function initListeners(){
   }, false);
 }
 
-function logout(){
-  $.post( "index.php", { 'logout': "true"} );
+
+function submit_post(url, params) {
+    var f = $("<form method='POST' style='display:none;'></form>").attr({
+        action: url
+    }).appendTo(document.body);
+
+    for (var i in params) {
+        if (params.hasOwnProperty(i)) {
+            $('<input type="hidden" />').attr({
+                name: i,
+                value: params[i]
+            }).appendTo(f);
+        }
+    }
+    f.submit();
+    f.remove();
 }
-});
+
+function logout(){
+  submit_post("index.php", {"logout":"true"});
+}
+
+function openRegister(){
+  submit_post("index.php", {"register":"true"});
+}
+
+
+
+function showDialog(message){
+  if(message!=""){
+    Materialize.toast(message, 3000, 'rounded')
+  }
+}
+
+function register(){
+  showDialog();
+  submit_post("index.php", {"refistracion":"ok"});
+}
