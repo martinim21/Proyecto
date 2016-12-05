@@ -15,6 +15,18 @@ class SkillModel extends Model{
         return $this->parsearSkills($results);
     }
 
+    public function deleteSkillsByUserId($userId){
+        $query="DELETE FROM Skill WHERE id_usuario='".$userId."'";
+        $results=$this->ejecutarSql($query);
+        return $this->parsearSkills($results);
+    }
+
+    public function findSkillByUserIdAndSkillName($userId, $skillName){
+        $query="SELECT * FROM Skill WHERE id_usuario='".$userId."' and nombre = " . $skillName . "";
+        $results=$this->ejecutarSql($query);
+        return $this->parsearSkills($results);
+    }
+
     public function parsearSkills($results){
       $skillList=[];
       foreach($results as $result){
@@ -31,9 +43,9 @@ class SkillModel extends Model{
     public function save($skill){
         $query="INSERT INTO Skill (id_usuario,nombre,porcentaje)
                 VALUES(
-                       ".$skill->setIdUsuario().",
-                       '".$skill->setNombre()."',
-                       '".$skill->setPorcentaje()."');";
+                       ".$skill->getIdUsuario().",
+                       '".$skill->getNombre()."',
+                       '".$skill->getPorcentaje()."');";
         $result = $this->ejecutarSql($query);
         return $result;
     }

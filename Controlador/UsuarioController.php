@@ -158,7 +158,6 @@ class UsuarioController extends ControladorBase{
       $mailList = [];
       $idBtnModal = "btnModal";
       $idModal = "modal";
-      $count=1;
 
       $mensajeModel=new MensajeModel();
       $usuarioModel=new UsuarioModel();
@@ -166,7 +165,7 @@ class UsuarioController extends ControladorBase{
       $mensajes = $mensajeModel->findMensajesRecibidosByUserId($userId);
       foreach ($mensajes as $mensaje) {
         $usuarioRemitente = $usuarioModel->findUsuarioById($mensaje->getIdEmisor());
-        array_push($mailList, $this->mailString($idBtnModal.$count, $idModal.$count, $mensaje->getAsunto(), $usuarioRemitente->getNombre(), $mensaje->getContenido(), $mensaje->getFechaEnviado(), $mensaje->getFechaVisto()));
+        array_push($mailList, $this->mailString($idBtnModal."_".$mensaje->getId(), $idModal."_".$mensaje->getId(), $mensaje->getAsunto(), $usuarioRemitente->getNombre(), $mensaje->getContenido(), $mensaje->getFechaEnviado(), $mensaje->getFechaVisto()));
       }
       return $mailList;
     }
@@ -176,8 +175,8 @@ class UsuarioController extends ControladorBase{
       if($estaLeido=='0000-00-00 00:00:00'){
         $icon = "mail";
       }
-      $mail = "<a id=\"" . $id . "\" class=\"waves-effect waves-light collapsible-header modal-trigger grey lighten-3\" data-target=\"" . $idModal . "\"><i class=\"material-icons\">" . $icon . "</i>" . $remitente . "</a>
-      <div id=\"" . $idModal . "\" class=\"modal\">
+      $mail = "<a id=\"" . $id . "\" class=\" waves-effect waves-light collapsible-header modal-trigger grey lighten-3\" data-target=\"" . $idModal . "\"><i class=\"material-icons\">" . $icon . "</i>" . $remitente . "</a>
+      <div id=\"" . $idModal . "\" class=\"correos modal\">
           <div class=\"modal-content\">
               <h4>" . $asunto . "</h4><small> " . $fecha . "</small>
               <p>" . $cuerpo . "</p>
@@ -201,11 +200,60 @@ class UsuarioController extends ControladorBase{
         }
 
 
-        $skill = "<tr class=\"row\"><td class=\"col s6\">" . $skill->getNombre() . "</td><td class=\"col s6\">" . $starts . "</td></tr>";
+        $skill = "<tr class=\"row skill\"><td class=\"col s6\">" . $skill->getNombre() . "</td><td class=\"col s6 \">" . $starts . "</td></tr>";
         array_push($skillList, $skill);
       }
       return $skillList;
     }
 
+
+    public function updateMensajeFechaVistoById($mensajeId){
+      $mensajeModel=new MensajeModel();
+      $mensajeModel->updateFechaVistoById($mensajeId);
+    }
+
+    public function updateUser($form){
+      $usuarioModel=new UsuarioModel();
+      $curriculumModel=new CurriculumModel();
+      $user = $usuarioModel->findUsuarioByUsername($form['username']);
+      $skillModel=new SkillModel();
+
+      $curriculum = $curriculumModel->findCurriculumByUserId($user->getId());
+      if(!$curriculum){
+        $curriculum = new Curriculum();
+        $curriculum->initDefaultValues();
+        $curriculum->setIdUsuario($user->getId());
+        $curriculumModel->save($curriculum);
+        $curriculum = $curriculumModel->findCurriculumByUserId($user->getId());
+      }
+      $curriculum->setDescripcion($form['presentacion']);
+      $curriculum->setExperiencia($form['experiencia']);
+      $curriculum->setHistorialAcademico($form['historial']);
+      $user->setNombre($form['name']);
+      $user->setCarrera($form['especialidad']);
+
+      $skillModel->deleteSkillsByUserId($user->getId());
+
+
+      //$form["mapSkill"] = array(1,2,3);
+      //error_log("TIPEO:::: " . gettype($form["skillList"]));
+      if($form["skillList"]!=""){
+        $skillList = explode(",", $form["skillList"]);
+        $porcentajeList = explode(",", $form["porcentajeList"]);
+         //error_log("----------*".$form['name']."*----------------------------". $skillList);
+        for($index=0; $index<count($skillList); $index++) {
+          $skill = new Skill();
+          $skill->setIdUsuario($user->getId());
+          $skill->setnombre($skillList[$index]);
+          $skill->setPorcentaje($porcentajeList[$index] * 20);
+          $skillModel->save($skill);
+        }
+      }
+      $curriculumModel->update($curriculum);
+      $usuarioModel->update($user);
+
+
+
+    }
 }
 ?>

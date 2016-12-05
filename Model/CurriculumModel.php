@@ -31,6 +31,18 @@ class CurriculumModel extends Model{
       }
     }
 
+    public function update($curriculum){
+        $query="UPDATE Curriculum SET
+                       id_usuario = ".$curriculum->getIdUsuario().",
+                       descripcion = '".$curriculum->getDescripcion()."',
+                       experiencia = '".$curriculum->getExperiencia()."',
+                       historial_academico = '".$curriculum->getHistorialAcademico()."',
+                       archivo = '".$curriculum->getArchivo()."'
+                       Where id = " . $curriculum->getId() . ";";
+        $result = $this->ejecutarSql($query);
+        return $result;
+    }
+
     public function save($curriculum){
         $query="INSERT INTO Curriculum (id_usuario,descripcion,experiencia, historial_academico, archivo)
                 VALUES(

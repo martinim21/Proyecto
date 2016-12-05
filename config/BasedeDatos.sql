@@ -37,7 +37,8 @@ CREATE TABLE IF NOT EXISTS Skill (
     id_usuario           INT            NOT NULL,
     nombre              VARCHAR(50),
     porcentaje          INT,
-    PRIMARY KEY         (id)
+    PRIMARY KEY         (id),
+    UNIQUE KEY `key_user_nombre` (`id_usuario`,`nombre`)
 );
 
 CREATE TABLE IF NOT EXISTS Postulacion (
@@ -58,7 +59,8 @@ CREATE TABLE IF NOT EXISTS Curriculum (
     experiencia         VARCHAR(200),
     historial_academico VARCHAR(200),
     archivo             BLOB,
-    PRIMARY KEY         (id)
+    PRIMARY KEY         (id),
+    UNIQUE(id_usuario)
 );
 
 CREATE TABLE IF NOT EXISTS Visita(

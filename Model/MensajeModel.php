@@ -21,6 +21,12 @@ class MensajeModel extends Model{
         return $this->parsearMensajes($results);
     }
 
+    public function updateFechaVistoById($id){
+      $query="UPDATE Mensaje set fecha_visto = CURRENT_TIMESTAMP() WHERE id=".$id."";
+      $results=$this->ejecutarSql($query);
+      return $this->parsearMensajes($results);
+    }
+
     public function parsearMensajes($results){
       $mensajesList=[];
       foreach($results as $result){

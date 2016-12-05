@@ -27,18 +27,18 @@
               nivel max 5
             </th>
           </tr>
+          <td class="col s6">
+          <input id="skill_name" class="form-field" type="text" />
+          </td>
+          <td valign="top" class="col s4">
+            <input id="button_skill_qty" type="number" min="1" max="5" />
+          </td>
+          <td valign="top" class="col s2">
+            <a id="addImage" class="waves-effect waves-circle waves-light btn-floating"><i class="tiny material-icons">+</i></a>
+          </td>
         </thead>
         <tbody>
           <tr class="row">
-            <td class="col s6">
-            <input id="skill_name" class="form-field" type="text" />
-            </td>
-            <td valign="top" class="col s4">
-              <input id="button_skill_qty" type="number" min="1" max="5" />
-            </td>
-            <td valign="top" class="col s2">
-              <a id="addImage" class="waves-effect waves-circle waves-light btn-floating"><i class="tiny material-icons">+</i></a>
-            </td>
             {% for skill in skills %}
             {{skill}}
             {%endfor%}
@@ -52,9 +52,12 @@
           <input value="{{name}}" id="user_name" type="text" class="validate" pattern="\w{5}" disabled>
           <label class="active" for="user_name">Nombre del estudiante</label>
         </div>
-        <div class="col s1 offset-s2">
-          <input id="edit_icon" type="image" name="name" src="Vista/img/edit_icon.jpg">
-          <label class="active" for="edit_icon">editar</label>
+        <div class="col s1">
+          <a href="#!" id="edit_icon"><i class="material-icons">edit</i>editar</a>
+        </div>
+
+        <div class="col s1">
+          <a href="#!" id="save_icon"><i class="material-icons">save</i>guardar</a>
         </div>
       </div>
 

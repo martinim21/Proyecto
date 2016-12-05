@@ -113,6 +113,24 @@ class UsuarioModel extends Model{
       return $usuarioList;
     }
 
+    public function update($usuario){
+        $query="UPDATE Usuario SET
+                       nombre = '".$usuario->getNombre()."',
+                       user_name = '".$usuario->getUsername()."',
+                       password = '".$usuario->getPassword()."',
+                       email = '".$usuario->getEmail()."',
+                       carrera = '".$usuario->getCarrera()."',
+                       direccion = '".$usuario->getDireccion()."',
+                       fecha_ultimo_login = '".$usuario->getLastLogin()."',
+                       descripcion = '".$usuario->getDescripcion()."',
+                       giro = '".$usuario->getGiro()."',
+                       tipo = '".$usuario->getTipo()."',
+                       foto = '".$usuario->getFoto()."'
+                       WHERE id = " . $usuario->getId() . ";";
+        $result = $this->ejecutarSql($query);
+        return $result;
+    }
+
     public function save($usuario){
         $query="INSERT INTO Usuario (nombre,user_name,password, email, carrera, direccion, fecha_ultimo_login, descripcion, giro, tipo, foto)
                 VALUES(
