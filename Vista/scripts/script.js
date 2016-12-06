@@ -107,6 +107,8 @@ function initListeners(){
       $("#message").html(data);
       }
       });
+
+      showDialog("usuario actualizado correctamente");
   }, false);
 
   $(".correos").bind('click', $.proxy(function(event) {

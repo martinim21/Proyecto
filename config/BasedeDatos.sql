@@ -29,7 +29,8 @@ CREATE TABLE IF NOT EXISTS Mensaje (
     fecha_visto         TIMESTAMP,
     id_emisor           INT             NOT NULL,
     id_receptor         INT             NOT NULL,
-    PRIMARY KEY         (id)
+    PRIMARY KEY         (id),
+    UNIQUE KEY `key_asunto_contenido` (`asunto`,`contenido`)
 );
 
 CREATE TABLE IF NOT EXISTS Skill (

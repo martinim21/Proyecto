@@ -26,7 +26,7 @@ class ProcesorViews{
         echo($vista);
     }
 
-    private function replaceVariables($vista, $vars){
+    public function replaceVariables($vista, $vars){
       foreach($vars as $clave => $valor){
         if(is_array($valor)){
           continue;

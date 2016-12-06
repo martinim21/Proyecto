@@ -50,6 +50,21 @@ class UsuarioModel extends Model{
       return $this->parsearUsuarios($results);
     }
 
+    public function findUsuariosByStringSkills($stringSkillList){
+      $query = "select Usuario.* from Usuario inner join Skill on Usuario.id = Skill.id_Usuario where Skill.nombre in (".$stringSkillList.")";
+      
+      $results=$this->ejecutarSql($query);
+      return $this->parsearUsuarios($results);
+    }
+
+    public function findUsuariosByStringCurriculum($stringQualitie){
+      $stringQualitie = trim(str_replace("'","",$stringQualitie));
+      $query = "select Usuario.* from Usuario inner join Curriculum on Usuario.id = Curriculum.id_Usuario where Curriculum.descripcion like '%".$stringQualitie."%' or Curriculum.experiencia like '%".$stringQualitie."%' or Curriculum.historial_academico like '%".$stringQualitie."%' ";
+
+      $results=$this->ejecutarSql($query);
+      return $this->parsearUsuarios($results);
+    }
+
     public function findUsuariosBySkillAndPercent($skill, $percent){
       $query = "select Usuario.* from Usuario inner join Skill on Usuario.id = Skill.id_Usuario where Skill.nombre like '".$skill."' and porcentaje >= ".$percent."";
       $results=$this->ejecutarSql($query);

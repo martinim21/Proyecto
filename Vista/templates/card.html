@@ -1,0 +1,32 @@
+<div class="col s4 m4">
+  <div class="card horizontal">
+    <div class="card-image">
+      <img src="{{image}}">
+      <a id="{{idBtnModal}}" class=" waves-effect waves-light collapsible-header modal-trigger center" data-target="{{idModal}}">enviar correo</a>
+    </div>
+    <div class="card-stacked">
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-1">{{username}} </span>
+        <p >{{descripcion}}</p>
+      </div>
+      <div class="card-action">
+        <div id="{{idModal}}" class="correos modal">
+            <div class=" modal-content">
+              <div class="input-field col s10">
+                <input id="asunto_{{idModal}}" type="text" class="validate">
+                <label for="asunto_{{idModal}}">asunto</label>
+              </div>
+              <div class="input-field col s10">
+                <textarea id="textarea_{{idModal}}" class="materialize-textarea"></textarea>
+                <label for="textarea_{{idModal}}">mensaje</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" id="sendMessage_{{idModal}}"class=" send_correo modal-action modal-close waves-effect waves-gray btn-flat">enviar</a>
+                <a href="#!" class=" modal-action modal-close waves-effect waves-gray btn-flat">cancelar</a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

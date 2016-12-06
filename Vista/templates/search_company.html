@@ -1,28 +1,47 @@
 <!DOCTYPE html>
 <html>
-  {{header}}
+  <header>
+    <script   src="http://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+
+    <script type="text/javascript" src="Vista/scripts/utils.js"></script>
+    <link rel="stylesheet" type="text/css"  href="Vista/css/user_style.css"></link>
+  </header>
   <body>
     {{logo}}
-    <div>Busqueda</div>
-    <br>
-    <form>
+    <div class="container">
       <div class="row">
-        <div class="input-field col s2">
-          <input id="company_name" type="text" class="validate">
-          <label class="active" for="company_name">Nombre de la empresa</label>
-        </div>
-        <div class="input-field col s2">
-          <input id="salario" type="text" class="validate">
-          <label class="active" for="salario">Salario</label>
-        </div>
-        <div class="input-field col s2">
-          <input id="puesto" type="text" class="validate">
-          <label class="active" for="puesto">Puesto</label>
+        <div class="col s10 center ">
+          <label for="input_search">ingresa informacion que deseas buscar: skils o coincidencias en curriculum</label>
         </div>
       </div>
-    </form>
-    <div class="chips"></div>
-    <div class="chips chips-initial"></div>
-    <div class="chips chips-placeholder"></div>
+      <div class="row">
+              <div id="input_search" class="chips chips-placeholder col s10"></div>
+              <a href="#!" id="search_icon"><i class="material-icons col s2 medium">search</i></a>
+      </div>
+      <div class="row">
+        { % for item in items % }
+          {{item}}
+        {%endfor%}
+
+
+
+
+
+<script>
+$(document).ready(function () {
+    $('.modal-trigger').leanModal();
+});
+</script>
+
+      </div>
+
+    </div>
   </body>
 </html>

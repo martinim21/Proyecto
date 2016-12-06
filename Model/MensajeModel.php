@@ -44,14 +44,9 @@ class MensajeModel extends Model{
     }
 
     public function save($mensaje){
-        $query="INSERT INTO Mensaje (asunto,contenido,fecha_enviado, fecha_visto, id_emisor, id_receptor)
-                VALUES(
-                       ".$mensaje->getAsunto().",
-                       '".$mensaje->getContenido()."',
-                       '".$mensaje->getFechaEnviado()."',
-                       '".$mensaje->getFechaVisto()."',
-                       '".$mensaje->getIdEmisor()."',
-                       '".$mensaje->getIdReceptor()."');";
+        $query="INSERT INTO Mensaje (asunto,contenido,fecha_enviado, fecha_visto, id_emisor, id_receptor) VALUES('".trim($mensaje->getAsunto())."','".trim($mensaje->getContenido())."','".trim($mensaje->getFechaEnviado())."','".trim($mensaje->getFechaVisto())."',".trim($mensaje->getIdEmisor()).",".trim($mensaje->getIdReceptor()).");";
+        error_log("---------------------------------");
+        error_log($query);
         $result = $this->ejecutarSql($query);
         return $result;
     }

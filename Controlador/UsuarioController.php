@@ -121,6 +121,7 @@ class UsuarioController extends ControladorBase{
         if($model->findUsuarioByMail($usuario->getEmail()) ){
           return "Usuario no registrado: el email ya se encuentra registrado";
         }
+        $usuario->setTipo(strtoupper($formulario["user_type"]));
         $model->save($usuario);
         $msg = "Usuario insertado correctamente";
       } catch (Exception $e) {
@@ -212,6 +213,19 @@ class UsuarioController extends ControladorBase{
       $mensajeModel->updateFechaVistoById($mensajeId);
     }
 
+    public function saveMessage($username_remitente, $receptor_id, $asunto,  $cuerpo){
+      $mensajeModel=new MensajeModel();
+      $mensaje = new Mensaje();
+      $usuarioModel=new UsuarioModel();
+      $user = $usuarioModel->findUsuarioByUsername($username_remitente);
+      $mensaje->initDefaultValues();
+      $mensaje->setAsunto($asunto);
+      $mensaje->setContenido($cuerpo);
+      $mensaje->setIdReceptor($receptor_id);
+      $mensaje->setIdEmisor($user->getId());
+      $mensajeModel->save($mensaje);
+    }
+
     public function updateUser($form){
       $usuarioModel=new UsuarioModel();
       $curriculumModel=new CurriculumModel();
@@ -251,9 +265,61 @@ class UsuarioController extends ControladorBase{
       }
       $curriculumModel->update($curriculum);
       $usuarioModel->update($user);
+    }
+
+    public function searchUsers($username, $query){
+      $usuarioModel=new UsuarioModel();
+      $curriculumModel=new CurriculumModel();
+      $user = $usuarioModel->findUsuarioByUsername($username);
+      $userList = array();
+      $cardList = array();
+      if(!$user){
+        return $userList;
+      }
+      if($user->getTipo()=="ALUMNO"){
+        $result=$usuarioModel->findUsuariosByStringSkills($query);
+        if($result){
+          array_push($userList, $result);
+        }
+        foreach (explode(",", $query) as $string) {
+          $userFind = $usuarioModel->findUsuariosByStringCurriculum($string);
+          if($userFind){
+            array_push($userList, $userFind);
+          }
+        }
+
+        foreach ($userList as $userdb) {
+          $curriculum = $curriculumModel->findCurriculumByUserId($userdb[0]->getId());
+          if(!$curriculum){
+            continue;
+          }
+          array_push($cardList, $this->createCard($userdb[0], $curriculum));
+        }
+      }
+
+      return $cardList;
+    }
 
 
+    public function createCard($usuario, $curriculum){
+      require_once 'Vista/ProcesadorPlantilla.php';
+      $card = file_get_contents("Vista/templates/card.html");
+      $procesadorPlantillas = new ProcesorViews();
+      $params=array();
+
+      if($usuario->getFoto() == ''){
+        $params["image"] = "Vista/img/user.png";
+      }
+      else{
+        $params["image"] = $usuario->getFoto();
+      }
+      $params["username"] = $usuario->getUsername();
+      $params["descripcion"] = $curriculum->getDescripcion();
+      $params["idBtnModal"] = "idBtnModal_" . $usuario->getId();
+      $params["idModal"] = "idModal_".$usuario->getId();
+      return $procesadorPlantillas->replaceVariables($card, $params);
 
     }
+
 }
 ?>
