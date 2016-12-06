@@ -49,6 +49,9 @@
     elseif(isset($_REQUEST['logout']) && $_REQUEST['logout'] == 'true'){
       $mvc=new UsuarioController();
       $mvc->logout();
+      require 'Controlador/LoginController.php';
+      $mvc=new LoginController();
+      $mvc->showView(array());
     }
     elseif(isset($_GET['ctl']) && $_GET['ctl'] == 'saveMessage' && isset($_REQUEST['correoId']) && is_numeric($_REQUEST['correoId'])){
       $mensajeId =$_REQUEST['correoId'];
@@ -78,9 +81,6 @@
     }
     elseif(isset($_GET['ctl']) && $_GET['ctl'] == 'compania'){
       $procesadorPlantillas->show("compania.html");
-    }
-    elseif(isset($_GET['ctl']) && $_GET['ctl'] == 'compania_register'){
-      $procesadorPlantillas->show("company_register.html");
     }
     elseif(isset($_GET['ctl']) && $_GET['ctl'] == 'search' && isset($_SESSION['username'])){
       $params=array();

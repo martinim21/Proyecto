@@ -16,7 +16,9 @@ class UsuarioModel extends Model{
     }
 
     public function findUsuarioByUsername($name){
-        $query="SELECT * FROM Usuario WHERE user_name = '".$name."'";
+
+        $name = trim(str_replace("'","",$name));
+        $query="SELECT * FROM Usuario WHERE user_name like '%".$name."%'";
         $result=$this->ejecutarSql($query);
         return $this->parsearUsuario($result);
     }
@@ -52,7 +54,7 @@ class UsuarioModel extends Model{
 
     public function findUsuariosByStringSkills($stringSkillList){
       $query = "select Usuario.* from Usuario inner join Skill on Usuario.id = Skill.id_Usuario where Skill.nombre in (".$stringSkillList.")";
-      
+
       $results=$this->ejecutarSql($query);
       return $this->parsearUsuarios($results);
     }

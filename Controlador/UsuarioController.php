@@ -20,7 +20,13 @@ class UsuarioController extends ControladorBase{
       $procesadorPlantillas = new ProcesorViews();
       $usuario = $this->login($username, $password);
       if($usuario){
-        $procesadorPlantillas->show("student.html", $this->getParams($usuario));
+        if($usuario->getTipo()=="ALUMNO"){
+          $procesadorPlantillas->show("student.html", $this->getParams($usuario));
+        }
+        elseif($usuario->getTipo()=="EMPRESA"){
+          $procesadorPlantillas->show("compania.html", $this->getParams($usuario));
+
+        }
       }
       else{
         require 'Controlador/LoginController.php';
@@ -36,6 +42,7 @@ class UsuarioController extends ControladorBase{
         $paramList = array();
         $paramList["mailList"] = $this->createMailList($usuario->getId());
         $paramList["name"] = $usuario->getNombre();
+        $paramList["email"] = $usuario->getEmail();
         $paramList["username"] = $usuario->getUsername();
         $paramList["carrera"] = $usuario->getCarrera();
         $paramList["descripcion"] = ($curriculum)?$curriculum->getDescripcion():"";
@@ -277,6 +284,26 @@ class UsuarioController extends ControladorBase{
         return $userList;
       }
       if($user->getTipo()=="ALUMNO"){
+        $result=$usuarioModel->findUsuariosByStringSkills($query);
+        if($result){
+          array_push($userList, $result);
+        }
+        foreach (explode(",", $query) as $string) {
+          $userFind = $usuarioModel->findUsuariosByStringCurriculum($string);
+          if($userFind){
+            array_push($userList, $userFind);
+          }
+        }
+
+        foreach ($userList as $userdb) {
+          $curriculum = $curriculumModel->findCurriculumByUserId($userdb[0]->getId());
+          if(!$curriculum){
+            continue;
+          }
+          array_push($cardList, $this->createCard($userdb[0], $curriculum));
+        }
+      }
+      if($user->getTipo()=="EMPRESA"){
         $result=$usuarioModel->findUsuariosByStringSkills($query);
         if($result){
           array_push($userList, $result);
