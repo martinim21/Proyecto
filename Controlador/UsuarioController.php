@@ -230,7 +230,19 @@ class UsuarioController extends ControladorBase{
       $mensaje->setContenido($cuerpo);
       $mensaje->setIdReceptor($receptor_id);
       $mensaje->setIdEmisor($user->getId());
+      $this->enviarCorreo();
       $mensajeModel->save($mensaje);
+    }
+
+    public function enviarCorreo(){
+      $para      = 'martin.ibarra201@gmail.com';
+$titulo    = 'El título';
+$mensaje   = 'Hola';
+$cabeceras = 'From: webmaster@example.com' . "\r\n" .
+    'Reply-To: webmaster@example.com' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+
+mail($para, $titulo, $mensaje, $cabeceras);
     }
 
     public function updateUser($form){
@@ -297,7 +309,6 @@ class UsuarioController extends ControladorBase{
           if($result){
             $userList=array_merge($userList, $result);
           }
-          print_r($userList);
           $result=$usuarioModel->findUsuarioByUsername($query);
           if($result){
             array_push($userList, $result);
