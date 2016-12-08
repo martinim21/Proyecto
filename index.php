@@ -19,16 +19,7 @@
     $procesadorPlantillas = new ProcesorViews();
 
 
-    if(isset($_GET['ctl']) && $_GET['ctl'] == 'regresar' && isset($_SESSION['username'])){
-      $mvc=new UsuarioController();
-
-      if(isset($_SESSION['username'])){
-        $_REQUEST['username']= $_SESSION['username'];
-          $_REQUEST['password']= "";
-      }
-      $mvc->showView($_REQUEST['username'], $_REQUEST['password']);
-    }
-    elseif(isset($_GET['ctl']) && $_GET['ctl'] == 'updateUser' && isset($_REQUEST['username'])){
+    if(isset($_GET['ctl']) && $_GET['ctl'] == 'updateUser' && isset($_REQUEST['username'])){
       if($_REQUEST["name"] == ""){
 
         echo("error el usuario esta vacio");
@@ -77,7 +68,7 @@
     elseif(isset($_REQUEST['register']) && $_REQUEST['register'] == 'true'){
       $procesadorPlantillas->show("student_register.html");
     }
-    elseif(!isset($_GET['ctl'])&&((isset($_REQUEST['username']) && isset($_REQUEST['password'])) || (isset($_SESSION['username'])))){
+    elseif((isset($_SESSION['username'])&&(!isset($_GET['ctl']) )) || (!isset($_GET['ctl'])&&isset($_REQUEST['username']) && isset($_REQUEST['password']))){
       $mvc=new UsuarioController();
 
       if(isset($_SESSION['username'])){
@@ -102,6 +93,16 @@
         $items["items"] = $mvc->searchUsers($username, $query);
       }
       $procesadorPlantillas->show("search_company.html", $items);
+    }
+    elseif((isset($_SESSION['username']))){
+      $mvc=new UsuarioController();
+
+      if(isset($_SESSION['username'])){
+        $_REQUEST['username']= $_SESSION['username'];
+          $_REQUEST['password']= "";
+      }
+      $mvc->showView($_REQUEST['username'], $_REQUEST['password']);
+
     }
     else{
       require 'Controlador/LoginController.php';
