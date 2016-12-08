@@ -1,6 +1,6 @@
 <?php
 return array(
-    "driver"    =>"*",
+    "driver"    =>"mysql",
     "host"      =>"*",
     "user"      =>"*",
     "pass"      =>"*",
