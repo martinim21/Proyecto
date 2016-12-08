@@ -64,6 +64,11 @@ function initListeners(){
       var skillName;
       var startqty;
       var mapSkill = new Map();
+      document.getElementById("text_presentacion").disabled=true;
+      document.getElementById("text_projects").disabled=true;
+      document.getElementById("text_historial").disabled=true;
+      document.getElementById("user_name").disabled=true;
+      document.getElementById("especialidad").disabled=true;
       $('#skills_table tbody tr').each(function(){
         skillName =$(this).find("td:first").text();
          startqty = 0;
