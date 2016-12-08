@@ -10,11 +10,19 @@ class UsuarioModel extends Model{
     }
 
     public function findUsuarioByName($name){
-        $query="SELECT * FROM Usuario WHERE nombre='".$name."'";
+        $name = trim(str_replace("'","",$name));
+        $query="SELECT * FROM Usuario WHERE nombre like '%".$name."%';";
         $results=$this->ejecutarSql($query);
         return $this->parsearUsuarios($results);
     }
 
+    public function findUsuarioByEspecialidad($especialidad){
+        $especialidad = trim(str_replace("'","",$especialidad));
+        $query="SELECT * FROM Usuario WHERE carrera like '%".$especialidad."%';";
+        print_r($query);
+        $results=$this->ejecutarSql($query);
+        return $this->parsearUsuarios($results);
+    }
     public function findUsuarioByUsername($name){
 
         $name = trim(str_replace("'","",$name));
@@ -54,7 +62,6 @@ class UsuarioModel extends Model{
 
     public function findUsuariosByStringSkills($stringSkillList){
       $query = "select Usuario.* from Usuario inner join Skill on Usuario.id = Skill.id_Usuario where Skill.nombre in (".$stringSkillList.")";
-
       $results=$this->ejecutarSql($query);
       return $this->parsearUsuarios($results);
     }

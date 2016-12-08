@@ -283,46 +283,40 @@ class UsuarioController extends ControladorBase{
       if(!$user){
         return $userList;
       }
-      if($user->getTipo()=="ALUMNO"){
+      if($user->getTipo()=="ALUMNO" || $user->getTipo()=="EMPRESA"){
         $result=$usuarioModel->findUsuariosByStringSkills($query);
         if($result){
-          array_push($userList, $result);
+          $userList=array_merge($userList, $result);
         }
         foreach (explode(",", $query) as $string) {
           $userFind = $usuarioModel->findUsuariosByStringCurriculum($string);
           if($userFind){
-            array_push($userList, $userFind);
+            $userList=array_merge($userList, $userFind);
+          }
+          $result=$usuarioModel->findUsuarioByName($query);
+          if($result){
+            $userList=array_merge($userList, $result);
+          }
+          print_r($userList);
+          $result=$usuarioModel->findUsuarioByUsername($query);
+          if($result){
+            array_push($userList, $result);
+          }
+          $result=$usuarioModel->findUsuarioByEspecialidad($query);
+          if($result){
+            $userList=array_merge($userList, $result);
           }
         }
 
-        foreach ($userList as $userdb) {
-          $curriculum = $curriculumModel->findCurriculumByUserId($userdb[0]->getId());
-          if(!$curriculum){
-            continue;
-          }
-          array_push($cardList, $this->createCard($userdb[0], $curriculum));
-        }
-      }
-      if($user->getTipo()=="EMPRESA"){
-        $result=$usuarioModel->findUsuariosByStringSkills($query);
-        if($result){
-          array_push($userList, $result);
-        }
-        foreach (explode(",", $query) as $string) {
-          $userFind = $usuarioModel->findUsuariosByStringCurriculum($string);
-          if($userFind){
-            array_push($userList, $userFind);
-          }
-        }
 
         foreach ($userList as $userdb) {
-          $curriculum = $curriculumModel->findCurriculumByUserId($userdb[0]->getId());
-          if(!$curriculum){
-            continue;
-          }
-          array_push($cardList, $this->createCard($userdb[0], $curriculum));
+          $curriculum = $curriculumModel->findCurriculumByUserId($userdb->getId());
+
+          array_push($cardList, $this->createCard($userdb, $curriculum));
+
         }
       }
+
 
       return $cardList;
     }
@@ -341,7 +335,7 @@ class UsuarioController extends ControladorBase{
         $params["image"] = $usuario->getFoto();
       }
       $params["username"] = $usuario->getUsername();
-      $params["descripcion"] = $curriculum->getDescripcion();
+      $params["especialidad"] = ($curriculum)?$usuario->getCarrera():"empresa";
       $params["idBtnModal"] = "idBtnModal_" . $usuario->getId();
       $params["idModal"] = "idModal_".$usuario->getId();
       return $procesadorPlantillas->replaceVariables($card, $params);
