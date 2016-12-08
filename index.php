@@ -29,8 +29,15 @@
       $mvc->showView($_REQUEST['username'], $_REQUEST['password']);
     }
     elseif(isset($_GET['ctl']) && $_GET['ctl'] == 'updateUser' && isset($_REQUEST['username'])){
-      $mvc=new UsuarioController();
-      $mvc->updateUser($_REQUEST);
+      if($_REQUEST["name"] == ""){
+
+        echo("error el usuario esta vacio");
+
+      }
+      else{
+        $mvc=new UsuarioController();
+        $mvc->updateUser($_REQUEST);
+      }
     }
     elseif(isset($_GET['ctl']) && $_GET['ctl'] == 'sendMessage' && isset($_REQUEST['receptor_id'])&&isset($_SESSION['username'])){
       $mvc=new UsuarioController();

@@ -75,8 +75,6 @@ function initListeners(){
         }
       });
 
-            console.log(skillList);
-                  console.log(porcentajeList);
       var form_data = new FormData();
       if(file_data==null || file_data.length == 0){
         file="";
@@ -85,6 +83,10 @@ function initListeners(){
         file = file_data[0];
       }
       //form_data.append("file", file)
+      if(name.trim() ==""){
+        showDialog("no se guardo usuario por que su nombre de usuario esta vacio");
+        return;
+      }
       form_data.append("name", name);
       form_data.append("username", username);
       form_data.append("especialidad", especialidad);
@@ -95,20 +97,30 @@ function initListeners(){
       form_data.append("porcentajeList", porcentajeList);
       //$.post( "index.php?ctl=updateUser", { "data": form_data});
       $.ajax({
-      url: "index.php?ctl=updateUser", // Url to which the request is send
-      type: "POST",             // Type of request to be send, called as method
-      data: form_data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-      contentType: false,       // The content type used when sending data to the server.
-      cache: false,             // To unable request pages to be cached
-      processData:false,        // To send DOMDocument or non processed data file it is set to false
-      success: function(data)   // A function to be called if request succeeds
+      url: "index.php?ctl=updateUser",
+      type: "POST",
+      data: form_data,
+      contentType: false,
+      cache: false,
+      processData:false,
+      success: function(data)
       {
       $('#loading').hide();
       $("#message").html(data);
+            if(data=="error el usuario esta vacio"){
+                   showDialog("error al insertar cliente: campos vacios");
+          }
+          else{
+
+                   showDialog("usuario actualizado correctamente");
+          }
+
+      },
+      fail: function(response) {
+             showDialog("error al insertar cliente: campos vacios");
       }
       });
 
-      showDialog("usuario actualizado correctamente");
   }, false);
 
   $(".correos").bind('click', $.proxy(function(event) {
