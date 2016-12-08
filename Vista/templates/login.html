@@ -8,7 +8,7 @@
 	      <div class="loader-section section-left"></div>
 	      <div class="loader-section section-right"></div>
   		</div>
-			<form id="login-form" class="login-form" action="index.php" method="post">
+			<form id="login-form" class="login-form" action="index.php" method="post" onKeyPress="return checkSubmit(event)" >
 				<div class="row">
 					<div class="input-field col s12 center">
 						<img src="Vista/img/logo.jpg" alt="" class="circle responsive-img valign profile-image-login">
@@ -18,14 +18,14 @@
 				<div class="row margin">
 					<div class="input-field col s12">
 						<i class="mdi-social-person-outline prefix"></i>
-						<input id="username" type="text" class="validate" name="username">
+						<input id="username" type="text" class="validate login_form" name="username">
 			      <label for="username">Usuario</label>
 					</div>
 				</div>
 				<div class="row margin">
 					<div class="input-field col s12">
 						<i class="mdi-action-lock-outline prefix"></i>
-						<input id="password" type="password" name="password">
+						<input id="password" type="password" name="password" class="login_form">
 						<label for="password">Password</label>
 					</div>
 				</div>

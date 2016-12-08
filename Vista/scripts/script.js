@@ -1,5 +1,6 @@
 window.onload = function(){
   initListeners();
+
 }
 
 var addSkill = (skillName, qtyScore) =>{
@@ -171,4 +172,10 @@ function showDialog(message){
 function register(){
   showDialog();
   submit_post("index.php", {"refistracion":"ok"});
+}
+
+function checkSubmit(e) {
+   if(e && e.keyCode == 13) {
+      document.forms[0].submit();
+   }
 }
