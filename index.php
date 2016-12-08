@@ -96,10 +96,10 @@
       if(isset($_REQUEST['queryParams']) && $_REQUEST['queryParams']!="" && isset($_SESSION['username'])){
         $username = $_SESSION['username'];
         $query = $_REQUEST['queryParams'];
+
         $mvc=new UsuarioController();
         //$userList = $mvc->searchUsers($username, $query);
         $items["items"] = $mvc->searchUsers($username, $query);
-
       }
       $procesadorPlantillas->show("search_company.html", $items);
     }

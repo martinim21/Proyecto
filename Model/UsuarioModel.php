@@ -19,7 +19,6 @@ class UsuarioModel extends Model{
     public function findUsuarioByEspecialidad($especialidad){
         $especialidad = trim(str_replace("'","",$especialidad));
         $query="SELECT * FROM Usuario WHERE carrera like '%".$especialidad."%';";
-        print_r($query);
         $results=$this->ejecutarSql($query);
         return $this->parsearUsuarios($results);
     }
