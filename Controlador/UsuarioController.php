@@ -1,13 +1,12 @@
 <?php
 require_once 'Controlador/controlador_base.php';
+require_once 'Controlador/messageController.php';
 require_once 'Model/UsuarioModel.php';
 require_once 'Model/CurriculumModel.php';
-require_once 'Model/MensajeModel.php';
 require_once 'Model/SkillModel.php';
 require_once 'Model/UsuarioEntity.php';
 require_once 'Model/CurriculumEntity.php';
 require_once 'Model/SkillEntity.php';
-require_once 'Model/MensajeEntity.php';
 require_once 'Vista/ProcesadorPlantilla.php';
 
 class UsuarioController extends ControladorBase{
@@ -167,10 +166,10 @@ class UsuarioController extends ControladorBase{
       $idBtnModal = "btnModal";
       $idModal = "modal";
 
-      $mensajeModel=new MensajeModel();
       $usuarioModel=new UsuarioModel();
+      $messageController = new MensajeController();
+      $mensajes = $messageController->getmessagesByUser($userId);
 
-      $mensajes = $mensajeModel->findMensajesRecibidosByUserId($userId);
       foreach ($mensajes as $mensaje) {
         $usuarioRemitente = $usuarioModel->findUsuarioById($mensaje->getIdEmisor());
         array_push($mailList, $this->mailString($idBtnModal."_".$mensaje->getId(), $idModal."_".$mensaje->getId(), $mensaje->getAsunto(), $usuarioRemitente->getNombre(), $mensaje->getContenido(), $mensaje->getFechaEnviado(), $mensaje->getFechaVisto()));
@@ -214,36 +213,6 @@ class UsuarioController extends ControladorBase{
       return $skillList;
     }
 
-
-    public function updateMensajeFechaVistoById($mensajeId){
-      $mensajeModel=new MensajeModel();
-      $mensajeModel->updateFechaVistoById($mensajeId);
-    }
-
-    public function saveMessage($username_remitente, $receptor_id, $asunto,  $cuerpo){
-      $mensajeModel=new MensajeModel();
-      $mensaje = new Mensaje();
-      $usuarioModel=new UsuarioModel();
-      $user = $usuarioModel->findUsuarioByUsername($username_remitente);
-      $mensaje->initDefaultValues();
-      $mensaje->setAsunto($asunto);
-      $mensaje->setContenido($cuerpo);
-      $mensaje->setIdReceptor($receptor_id);
-      $mensaje->setIdEmisor($user->getId());
-      $this->enviarCorreo();
-      $mensajeModel->save($mensaje);
-    }
-
-    public function enviarCorreo(){
-      $para      = 'martin.ibarra201@gmail.com';
-$titulo    = 'El título';
-$mensaje   = 'Hola';
-$cabeceras = 'From: webmaster@example.com' . "\r\n" .
-    'Reply-To: webmaster@example.com' . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
-
-mail($para, $titulo, $mensaje, $cabeceras);
-    }
 
     public function updateUser($form){
       $usuarioModel=new UsuarioModel();

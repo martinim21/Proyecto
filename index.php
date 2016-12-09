@@ -31,7 +31,7 @@
       }
     }
     elseif(isset($_GET['ctl']) && $_GET['ctl'] == 'sendMessage' && isset($_POST['receptor_id'])&&isset($_SESSION['username'])){
-      $mvc=new UsuarioController();
+      $mvc=new MensajeController();
       $username_remitente = $_SESSION['username'];
       $receptor_id = $_POST['receptor_id'];
       $asunto = $_POST['asunto'];
@@ -41,7 +41,7 @@
     }
     elseif(isset($_GET['ctl']) && $_GET['ctl'] == 'saveMessage' && isset($_POST['correoId']) && is_numeric($_POST['correoId'])){
       $mensajeId =$_POST['correoId'];
-      $mvc=new UsuarioController();
+      $mvc=new MensajeController();
       $mvc->updateMensajeFechaVistoById($mensajeId);
     }
     elseif(isset($_POST['logout']) && $_POST['logout'] == 'true'){
@@ -50,11 +50,6 @@
       require 'Controlador/LoginController.php';
       $mvc=new LoginController();
       $mvc->showView(array());
-    }
-    elseif(isset($_GET['ctl']) && $_GET['ctl'] == 'saveMessage' && isset($_POST['correoId']) && is_numeric($_POST['correoId'])){
-      $mensajeId =$_POST['correoId'];
-      $mvc=new UsuarioController();
-      $mvc->updateMensajeFechaVistoById($mensajeId);
     }
     elseif(isset($_POST['user_password']) && isset($_POST['user_password2'])){
       $mvcUser=new UsuarioController();
