@@ -45,7 +45,7 @@ class UsuarioController extends ControladorBase{
         $paramList["email"] = $usuario->getEmail();
         $paramList["username"] = $usuario->getUsername();
         $paramList["carrera"] = $usuario->getCarrera();
-        $paramList["descripcion"] = ($curriculum)?trim("22222222".$curriculum->getDescripcion()):"";
+        $paramList["descripcion"] = ($curriculum)?trim($curriculum->getDescripcion()):"";
         $paramList["experiencia"] = ($curriculum)?$curriculum->getExperiencia():"";
         $paramList["historial_academico"] = ($curriculum)?$curriculum->getHistorialAcademico():"";
         $paramList["skills"] = $this->createSkillList($usuario->getId());

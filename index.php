@@ -19,44 +19,44 @@
     $procesadorPlantillas = new ProcesorViews();
 
 
-    if(isset($_GET['ctl']) && $_GET['ctl'] == 'updateUser' && isset($_REQUEST['username'])){
-      if($_REQUEST["name"] == ""){
+    if(isset($_GET['ctl']) && $_GET['ctl'] == 'updateUser' && isset($_POST['username'])){
+      if($_POST["name"] == ""){
 
         echo("error el usuario esta vacio");
 
       }
       else{
         $mvc=new UsuarioController();
-        $mvc->updateUser($_REQUEST);
+        $mvc->updateUser($_POST);
       }
     }
-    elseif(isset($_GET['ctl']) && $_GET['ctl'] == 'sendMessage' && isset($_REQUEST['receptor_id'])&&isset($_SESSION['username'])){
+    elseif(isset($_GET['ctl']) && $_GET['ctl'] == 'sendMessage' && isset($_POST['receptor_id'])&&isset($_SESSION['username'])){
       $mvc=new UsuarioController();
       $username_remitente = $_SESSION['username'];
-      $receptor_id = $_REQUEST['receptor_id'];
-      $asunto = $_REQUEST['asunto'];
-      $cuerpo = $_REQUEST['cuerpo'];
+      $receptor_id = $_POST['receptor_id'];
+      $asunto = $_POST['asunto'];
+      $cuerpo = $_POST['cuerpo'];
 
       $mvc->saveMessage($username_remitente, $receptor_id, $asunto,  $cuerpo);
     }
-    elseif(isset($_GET['ctl']) && $_GET['ctl'] == 'saveMessage' && isset($_REQUEST['correoId']) && is_numeric($_REQUEST['correoId'])){
-      $mensajeId =$_REQUEST['correoId'];
+    elseif(isset($_GET['ctl']) && $_GET['ctl'] == 'saveMessage' && isset($_POST['correoId']) && is_numeric($_POST['correoId'])){
+      $mensajeId =$_POST['correoId'];
       $mvc=new UsuarioController();
       $mvc->updateMensajeFechaVistoById($mensajeId);
     }
-    elseif(isset($_REQUEST['logout']) && $_REQUEST['logout'] == 'true'){
+    elseif(isset($_POST['logout']) && $_POST['logout'] == 'true'){
       $mvc=new UsuarioController();
       $mvc->logout();
       require 'Controlador/LoginController.php';
       $mvc=new LoginController();
       $mvc->showView(array());
     }
-    elseif(isset($_GET['ctl']) && $_GET['ctl'] == 'saveMessage' && isset($_REQUEST['correoId']) && is_numeric($_REQUEST['correoId'])){
-      $mensajeId =$_REQUEST['correoId'];
+    elseif(isset($_GET['ctl']) && $_GET['ctl'] == 'saveMessage' && isset($_POST['correoId']) && is_numeric($_POST['correoId'])){
+      $mensajeId =$_POST['correoId'];
       $mvc=new UsuarioController();
       $mvc->updateMensajeFechaVistoById($mensajeId);
     }
-    elseif(isset($_REQUEST['user_password']) && isset($_REQUEST['user_password2'])){
+    elseif(isset($_POST['user_password']) && isset($_POST['user_password2'])){
       $mvcUser=new UsuarioController();
       require 'Controlador/LoginController.php';
       $mvcLogin=new LoginController();
@@ -65,17 +65,17 @@
       $mvcLogin->showView(array('mensaje' => $msg));
 
     }
-    elseif(isset($_REQUEST['register']) && $_REQUEST['register'] == 'true'){
+    elseif(isset($_POST['register']) && $_POST['register'] == 'true'){
       $procesadorPlantillas->show("student_register.html");
     }
-    elseif((isset($_SESSION['username'])&&(!isset($_GET['ctl']) )) || (!isset($_GET['ctl'])&&isset($_REQUEST['username']) && isset($_REQUEST['password']))){
+    elseif((isset($_SESSION['username'])&&(!isset($_GET['ctl']) )) || (!isset($_GET['ctl'])&&isset($_POST['username']) && isset($_POST['password']))){
       $mvc=new UsuarioController();
 
       if(isset($_SESSION['username'])){
-        $_REQUEST['username']= $_SESSION['username'];
-          $_REQUEST['password']= "";
+        $_POST['username']= $_SESSION['username'];
+          $_POST['password']= "";
       }
-      $mvc->showView($_REQUEST['username'], $_REQUEST['password']);
+      $mvc->showView($_POST['username'], $_POST['password']);
     }
     elseif(isset($_GET['ctl']) && $_GET['ctl'] == 'compania'){
       $procesadorPlantillas->show("compania.html");
@@ -84,9 +84,9 @@
       $params=array();
       $userList=array();
       $items=array();
-      if(isset($_REQUEST['queryParams']) && $_REQUEST['queryParams']!="" && isset($_SESSION['username'])){
+      if(isset($_POST['queryParams']) && $_POST['queryParams']!="" && isset($_SESSION['username'])){
         $username = $_SESSION['username'];
-        $query = $_REQUEST['queryParams'];
+        $query = $_POST['queryParams'];
 
         $mvc=new UsuarioController();
         //$userList = $mvc->searchUsers($username, $query);
@@ -98,10 +98,10 @@
       $mvc=new UsuarioController();
 
       if(isset($_SESSION['username'])){
-        $_REQUEST['username']= $_SESSION['username'];
-          $_REQUEST['password']= "";
+        $_POST['username']= $_SESSION['username'];
+          $_POST['password']= "";
       }
-      $mvc->showView($_REQUEST['username'], $_REQUEST['password']);
+      $mvc->showView($_POST['username'], $_POST['password']);
 
     }
     else{
