@@ -11,6 +11,6 @@ y los estudiantes pueden buscar empresas.
 para ejecutar el proyecto en otro servidor es necesario instalar mysql, php y crear un host virtual
 
 #accesos
-acceso temporal: 108.161.131.82
+acceso temporal: -------------
 cuentas Alumno de prueba: martin: 1234
 cuentas Empresa de prueba: ooyala: 1234
